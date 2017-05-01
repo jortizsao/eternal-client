@@ -56,10 +56,15 @@
 
               <li v-else class="list-item-user">
                 <a href="signIn()" class="link-user icon-user">
-                  <span class="hidden-xs hidden-sm">Log in</span>
+                  <span class="hidden-xs hidden-sm">Sign in</span>
                 </a>
               </li>
-              <location-selector></location-selector>
+
+              <li class="list-item-location clearfix">
+                <location-selector></location-selector>
+              </li>
+
+
             </ul>
           </div>
         </div>
@@ -87,6 +92,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-</style>

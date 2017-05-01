@@ -5,7 +5,7 @@ import App from './App.vue';
 import router from './router';
 import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 // import './assets/scss/application/main.scss';
-import './assets/scss/application/main.scss';
+import './assets/scss/main.scss';
 
 Vue.config.productionTip = false;
 

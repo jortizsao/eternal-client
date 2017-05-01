@@ -1,5 +1,5 @@
 <template lang="html">
-  <li class="list-item-location clearfix">
+  <div class="location-selector-component">
     <button id="location-dropdown-toggle-btn" class="location-dropdown-toggle">
       <img class="pull-right" src="../assets/img/globe-2.png" alt="location">
     </button>
@@ -11,7 +11,7 @@
         </select>
       </form>
     </div>
-  </li>
+  </div>
 </template>
 
 <script>

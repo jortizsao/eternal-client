@@ -206,6 +206,12 @@
       height: 20px;
       margin-right: 10px;
     }
+
+    .location-selector-component {
+      position: relative;
+      top: 13px;
+    }
+
     .location-dropdown {
       display: none;
       position: relative;
@@ -303,9 +309,11 @@
       padding: 10px 20px;
       position: relative;
       text-transform: uppercase;
+      top: 15px;
 
       @media screen and (min-width: 768px) {
-        padding: 15px 20px;
+        padding: 16px 25px;
+        top: 14px;
 
         &:hover,
         &:focus {
