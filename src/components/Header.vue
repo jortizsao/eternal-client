@@ -19,23 +19,23 @@
               <!-- Toggles the search field on mobile / not visible on desktop -->
               <li class="list-item-search">
                 <button type="button" class="search-toggle icon-magnifying-glass">
-                  <span class="sr-only">Search</span>
+                  <span class="sr-only">{{ $t('search') }}</span>
                 </button>
               </li>
               <!-- End -->
 
               <li class="list-item-store">
                 <a href="" class="store-select icon-marker">
-                  <span class="hidden-xs">Stores</span>
+                  <span class="hidden-xs">{{ $t('stores') }}</span>
                 </a>
               </li>
 
               <li class="list-item-help">
-                <a href="" class="link-help">Help</a>
+                <a href="" class="link-help">{{ $t('help') }}</a>
               </li>
 
               <li class="list-item-call">
-                <a href="tel:0044123456000" class="link-hotline">Call us on +44 123 456 000</a>
+                <a href="tel:0044123456000" class="link-hotline">{{ $t('callUs', {phoneNumber: '+44 123 456 000'}) }}</a>
               </li>
 
               <li class="list-item-bag">
@@ -44,19 +44,19 @@
 
               <li v-if="user" class="list-item-user">
                 <a href="signOut()" class="link-user">
-                  <span>Log out</span>
+                  <span>{{ $t('signOut') }}</span>
                 </a>
               </li>
 
               <li v-if="user" class="list-item-user">
                 <a href="myAccount()" class="link-user icon-user">
-                  <span class="hidden-xs hidden-sm">{{user.name}}</span>
+                  <span class="hidden-xs hidden-sm">{{ user.name }}</span>
                 </a>
               </li>
 
               <li v-else class="list-item-user">
                 <a href="signIn()" class="link-user icon-user">
-                  <span class="hidden-xs hidden-sm">Sign in</span>
+                  <span class="hidden-xs hidden-sm">{{ $t('signIn') }}</span>
                 </a>
               </li>
 
@@ -64,17 +64,12 @@
                 <location-selector></location-selector>
               </li>
 
-
             </ul>
           </div>
         </div>
       </header>
     </div>
-
-
   </div>
-
-
 </template>
 
 <script>
@@ -92,3 +87,44 @@ export default {
   },
 };
 </script>
+
+<i18n>
+en:
+  title: Sunrise
+  stores: Stores
+  help: Help
+  callUs: Call us on {phoneNumber}
+  miniCart: Cart
+  viewBag: View Bag
+  checkout: Checkout
+  search: Search
+  signIn: Sign In
+  signOut: Log Out
+  language: Language
+  country: Country
+  location: Location
+  allCategories: All categories
+  teaser: Summer 2015 – What inspires you?
+  new: New
+  sale: Sale
+  brands: Brands
+de:
+  title: Sunrise
+  stores: Filiale
+  help: Hilfe
+  callUs: Rufen Sie uns auf {phoneNumber} an
+  miniCart: Warenkorb
+  viewBag: Warenkorb ansehen
+  checkout: Checkout
+  search: Suche
+  signIn: Log In
+  signOut: Log Out
+  language: Sprache
+  country: Land
+  location: Ort
+  allCategories: Alle Kategorien
+  teaser: Sommer 2015 – Was ist Ihre Inspiration?
+  new: Neu
+  sale: Sale
+  brands: Marken
+</i18n>

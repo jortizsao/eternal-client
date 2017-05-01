@@ -3,8 +3,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
+import i18n from './i18n';
 import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
-// import './assets/scss/application/main.scss';
 import './assets/scss/main.scss';
 
 Vue.config.productionTip = false;
@@ -13,6 +13,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  i18n,
   template: '<App/>',
   components: { App },
 });
