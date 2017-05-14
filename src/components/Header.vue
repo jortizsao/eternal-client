@@ -100,7 +100,6 @@ en:
   search: Search
   signIn: Sign In
   signOut: Log Out
-  language: Language
   country: Country
   location: Location
   allCategories: All categories
@@ -119,7 +118,6 @@ de:
   search: Suche
   signIn: Log In
   signOut: Log Out
-  language: Sprache
   country: Land
   location: Ort
   allCategories: Alle Kategorien

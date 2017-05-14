@@ -210,15 +210,20 @@
     .location-selector-component {
       position: relative;
       top: 13px;
+
+      .location-dropdown-toggle {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .location-dropdown {
-      display: none;
       position: relative;
       background: $ebony-clay;
       padding-bottom: 10px;
       width: 180px;
-      top: -2px;
+      top: 10px;
       .location-select {
         width: 120px;
         color: $white;

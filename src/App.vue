@@ -25,6 +25,8 @@ export default {
 </script>
 
 <style lang="scss">
+$bootstrap-sass-asset-helper: true;
+@import '~bootstrap-sass/assets/stylesheets/_bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
 
 </style>
