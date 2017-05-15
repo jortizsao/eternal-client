@@ -2,7 +2,7 @@
   <div id="app">
     <div class="darkbg hidden"></div>
     <header-component :user="user"></header-component>
-    <!-- <router-view></router-view> -->
+    <router-view></router-view>
   </div>
 </template>
 
@@ -13,9 +13,7 @@ export default {
   name: 'app',
   data() {
     return {
-      user: {
-        name: 'javier',
-      },
+      user: '',
     };
   },
   components: {

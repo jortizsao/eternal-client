@@ -69,12 +69,30 @@
         </div>
       </header>
     </div>
+
+    <div id="navigation" class="container">
+      <div class="row logo-search">
+        <div class="col-sm-8">
+          <logo></logo>
+        </div>
+        <div class="col-sm-4">
+          <search-bar></search-bar>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <nav-bar></nav-bar>
+    </div>
   </div>
 </template>
 
 <script>
 import MiniCart from './MiniCart.vue';
 import LocationSelector from './LocationSelector.vue';
+import Logo from './Logo.vue';
+import SearchBar from './SearchBar.vue';
+import NavBar from './NavBar.vue';
 
 export default {
   data() {
@@ -84,6 +102,9 @@ export default {
   components: {
     MiniCart,
     LocationSelector,
+    Logo,
+    SearchBar,
+    NavBar,
   },
 };
 </script>
