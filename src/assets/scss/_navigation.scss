@@ -206,24 +206,13 @@
       height: 20px;
       margin-right: 10px;
     }
-
-    .location-selector-component {
-      position: relative;
-      top: 13px;
-
-      .location-dropdown-toggle {
-        display: inline-block;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
     .location-dropdown {
+      display: none;
       position: relative;
       background: $ebony-clay;
       padding-bottom: 10px;
       width: 180px;
-      top: 10px;
+      top: -2px;
       .location-select {
         width: 120px;
         color: $white;
@@ -311,14 +300,12 @@
 
     .link-your-bag {
       color: $white;
-      padding: 17px 45px;
+      padding: 10px 20px;
       position: relative;
       text-transform: uppercase;
-      top: 15px;
 
       @media screen and (min-width: 768px) {
-        padding: 16px 25px;
-        top: 14px;
+        padding: 15px 20px;
 
         &:hover,
         &:focus {
@@ -330,15 +317,11 @@
         font-size: 28px;
         position: relative;
         vertical-align: top;
-        bottom: 5px;
-        right: 22px;
 
         @media screen and (min-width: 768px) {
           font-size: 26px;
           bottom: 3px;
           margin-right: 7px;
-          bottom: 2px;
-          right: 0;
         }
       }
 

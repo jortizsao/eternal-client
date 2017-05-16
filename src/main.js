@@ -8,6 +8,7 @@ import App from './App.vue';
 import router from './router';
 import i18n from './i18n';
 import './assets/scss/main.scss';
+import './assets/scss/custom/my-custom.scss';
 
 Vue.config.productionTip = false;
 // Vue.use(ElementUI);

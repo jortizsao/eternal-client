@@ -1,0 +1,133 @@
+@import "../_general";
+
+.location-dropdown__select {
+  margin-top: 10px;
+
+  .el-input {
+    .el-input__inner {
+      background: $ebony-clay;
+      border: 1px solid;
+      border-radius: 0;
+      color: $white;
+      height: 42px;
+      left: 2px;
+      position: relative;
+    }
+
+    .el-input__icon {
+      color: $white;
+      z-index: 1;
+    }
+  }
+}
+
+.location-selector-component {
+  position: relative;
+  top: 13px;
+  .location-dropdown-toggle {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+}
+.nav-list {
+  .list-item-location {
+    .location-dropdown {
+      display: block;
+      position: relative;
+      background: $ebony-clay;
+      padding-bottom: 10px;
+      width: 180px;
+      top: 10px;
+      .location-select {
+        width: 120px;
+        color: $white;
+        border: 1px solid $white;
+        background: transparent url("../../img/arrow-67-white.png") no-repeat 90% 50%;
+        background-size: 10px;
+        margin: 10px;
+        text-transform: capitalize;
+      }
+    }
+  }
+  .list-item-bag {
+    .link-your-bag {
+      color: $white;
+      padding: 17px 45px;
+      position: relative;
+      text-transform: uppercase;
+      top: 15px;
+
+      @media screen and (min-width: 768px) {
+        padding: 16px 25px;
+        top: 14px;
+
+        &:hover,
+        &:focus {
+          background: #353e49;
+        }
+      }
+
+      &.icon-hand-bag::before {
+        font-size: 28px;
+        position: relative;
+        vertical-align: top;
+        bottom: 5px;
+        right: 22px;
+
+        @media screen and (min-width: 768px) {
+          font-size: 26px;
+          bottom: 3px;
+          margin-right: 7px;
+          bottom: 2px;
+          right: 0;
+        }
+      }
+
+      &.not-empty {
+        color: $mine-shaft;
+        background: $my-sin;
+
+        .cart-item-number {
+          color: $white;
+          background: $valencia;
+        }
+
+        @media screen and (min-width: 768px) {
+          &:hover,
+          &:focus {
+            background: #ffc447;
+          }
+        }
+      }
+
+      .cart-item-number {
+        position: absolute;
+        color: $ebony-clay;
+        background: $my-sin;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 20px;
+        right: 10px;
+        bottom: 20px;
+        letter-spacing: normal;
+        font-size: 12px;
+        font-weight: bold;
+
+        @media screen and (min-width: 768px) {
+          position: relative;
+          width: 25px;
+          height: 25px;
+          bottom: 2px;
+          margin-left: 5px;
+          line-height: 26px;
+          right: 0;
+        }
+      }
+    }
+  }
+}

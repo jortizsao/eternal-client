@@ -63,28 +63,3 @@ export default {
   de:
     language: Sprache
 </i18n>
-
-<style lang="scss">
-@import '../assets/scss/_general';
-
-.location-dropdown__select {
-  margin-top: 10px;
-
-  .el-input {
-    .el-input__inner {
-      background: $ebony-clay;
-      border: 1px solid;
-      border-radius: 0;
-      color: $white;
-      height: 42px;
-      left: 2px;
-      position: relative;
-    }
-
-    .el-input__icon {
-      color: $white;
-      z-index: 1;
-    }
-  }
-}
-</style>
