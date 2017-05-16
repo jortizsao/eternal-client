@@ -43,7 +43,6 @@ export default {
       this.isDropdownShown = !this.isDropdownShown;
     },
     hideDropdown() {
-      console.log('dentro');
       if (this.isDropdownShown) {
         this.isDropdownShown = false;
       }

@@ -2,7 +2,9 @@
   <div id="app">
     <div class="darkbg hidden"></div>
     <header-component :user="user"></header-component>
-    <router-view></router-view>
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

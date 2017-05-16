@@ -49,15 +49,15 @@
               </li>
 
               <li v-if="user" class="list-item-user">
-                <a href="myAccount()" class="link-user icon-user">
+                <router-link class="link-user icon-user" :to="{ name: 'myAccount', params: { id: user.id } }">
                   <span class="hidden-xs hidden-sm">{{ user.name }}</span>
-                </a>
+                </router-link>
               </li>
 
               <li v-else class="list-item-user">
-                <a href="signIn()" class="link-user icon-user">
+                <router-link class="link-user icon-user" :to="{ name: 'SignIn' }">
                   <span class="hidden-xs hidden-sm">{{ $t('signIn') }}</span>
-                </a>
+                </router-link>
               </li>
 
               <li class="list-item-location clearfix">
