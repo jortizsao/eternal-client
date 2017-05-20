@@ -51,6 +51,7 @@ export default {
   watch: {
     language(value) {
       this.$locale.change(value);
+      this.$validator.setLocale(value);
       this.isDropdownShown = false;
     },
   },

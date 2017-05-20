@@ -12,19 +12,21 @@
       <hr class="login-box-hr">
       <div class="login-box-description">{{ $t('description') }}</div>
       <div class="login-box-input-wrapper">
-        <form id="form-sign-in" method="POST" action="">
+        <form id="form-sign-in" @submit.prevent="signIn" method="post" action="/signIn">
           <!-- <div class="row">
             {{> form/global-messages messages=form.messages}}
             {{> form/global-errors errors=form.errors}}
           </div> -->
           <div class="login-box-input">
             <span>{{ $t('email') }}*</span><br>
-            <input type="email" name="username" :value="username">
+            <input type="email" v-validate="'required|email'" name="email" :model="email">
           </div>
+          <p class="text-danger" v-show="errors.has('email')">{{ errors.first('email') }}</p>
           <div class="login-box-input">
             <span>{{ $t('password') }}*</span><br>
-            <input type="password" name="password" :value="password">
+            <input type="password" v-validate="'required'" name="password" :model="password">
           </div>
+          <p class="text-danger" v-show="errors.has('password')">{{ errors.first('password') }}</p>
           <div class="clearfix">
             <div class="pull-left">
               <div class="login-box-remember-me">
@@ -49,11 +51,18 @@
 export default {
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
       rememberMe: false,
     }
-  }
+  },
+  methods: {
+    signIn() {
+      this.$validator.validateAll().then(() => {
+        alert('Submitted signIn');
+      });
+    }
+  },
 }
 </script>
 
