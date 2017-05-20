@@ -20,16 +20,13 @@
           <div class="col-sm-6">
             <div class="signup-box-input">
               <span class="text-uppercase">{{ $t('selectTitle') }}</span><br>
-              <select id="title" class="checkout-dropdown" :value="title">
-                <option value="" selected>{{ $t('choose') }}</option>
-                <option value="mr" >{{ $t('personTitles.mr') }}</option>
-                <option value="mrs" >{{ $t('personTitles.mrs') }}</option>
-                <option value="ms" >{{ $t('personTitles.ms') }}</option>
-                <option value="dr" >{{ $t('personTitles.dr') }}</option>
-              </select>
+              <el-select class="signup-title-dropdown" :placeholder="$t('choose')" clearable v-model="title">
+                <el-option value="mr" :label="$t('personTitles.mr')"></el-option>
+                <el-option value="mrs" :label="$t('personTitles.mrs')"></el-option>
+                <el-option value="ms" :label="$t('personTitles.ms')"></el-option>
+                <el-option value="dr" :label="$t('personTitles.dr')"></el-option>
+              </el-select>
             </div>
-
-         <!-- {{> form/choose-title containerClass="signup-box-input" selectId="title" selectName="title" options=settings.title}} -->
           </div>
         </div>
         <div class="row">

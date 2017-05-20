@@ -1,5 +1,7 @@
 @import "../_general";
 
+$border-grey: #EEEEEE;
+
 .location-dropdown__select {
   margin-top: 10px;
 
@@ -129,5 +131,14 @@
         }
       }
     }
+  }
+}
+.signup-title-dropdown {
+  .el-input__inner {
+    height: 42px;
+    max-width: 120px;
+    border-radius: 0;
+    color: $mine-shaft;
+    border-color: $border-grey;
   }
 }
