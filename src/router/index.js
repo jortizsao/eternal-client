@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../components/Home.vue';
 import MyAccount from '../components/MyAccount.vue';
-import SignIn from '../components/SignIn.vue';
 import ForgotPassword from '../components/ForgotPassword.vue';
 
 Vue.use(Router);
@@ -23,7 +22,7 @@ export default new Router({
     {
       path: '/user/signIn',
       name: 'SignIn',
-      component: SignIn,
+      component: () => import('../components/SignIn.vue'),
     },
     {
       path: '/user/forgotPassword',
