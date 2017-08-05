@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import HeaderComponent from './components/Header.vue';
 
 export default {
@@ -17,6 +18,23 @@ export default {
     return {
       user: '',
     };
+  },
+  created() {
+    this.setLanguage(this.language);
+  },
+  methods: {
+    setLanguage(language) {
+      this.$i18n.locale = language;
+      this.$validator.setLocale(language);
+    },
+  },
+  computed: {
+    ...mapState('general', ['language']),
+  },
+  watch: {
+    language() {
+      this.setLanguage(this.language);
+    },
   },
   components: {
     HeaderComponent,

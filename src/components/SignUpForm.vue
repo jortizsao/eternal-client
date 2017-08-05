@@ -81,6 +81,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -91,16 +93,24 @@ export default {
       password: '',
       confirmPassword: '',
       agreeToTerms: '',
-    }
+    };
   },
   methods: {
     signUp() {
       this.$validator.validateAll().then(() => {
         alert('Submitted signUp');
       });
-    }
-  }
-}
+    },
+  },
+  computed: {
+    ...mapState('general', ['language']),
+  },
+  watch: {
+    language() {
+      this.errors.clear();
+    },
+  },
+};
 </script>
 
 <i18n>

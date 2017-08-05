@@ -5,7 +5,7 @@
     </button>
     <div v-if="isDropdownShown" v-on-clickaway="hideDropdown" class="location-dropdown">
       <span class="location-dropdown-label">{{ $t('language') }}</span>
-      <el-select class="location-dropdown__select" v-model="language">
+      <el-select class="location-dropdown__select" :value="language" @input="onLanguageChanged">
         <el-option
           v-for="lang in languages"
           :key="lang.value"
@@ -19,13 +19,13 @@
 
 <script>
 import { mixin as clickaway } from 'vue-clickaway';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   mixins: [clickaway],
   data() {
     return {
       isDropdownShown: false,
-      language: 'en',
       languages: [
         {
           value: 'en',
@@ -47,13 +47,14 @@ export default {
         this.isDropdownShown = false;
       }
     },
-  },
-  watch: {
-    language(value) {
-      this.$locale.change(value);
-      this.$validator.setLocale(value);
+    onLanguageChanged(newLanguage) {
+      this.SET_LANGUAGE(newLanguage);
       this.isDropdownShown = false;
     },
+    ...mapMutations('general', ['SET_LANGUAGE']),
+  },
+  computed: {
+    ...mapState('general', ['language']),
   },
 };
 </script>

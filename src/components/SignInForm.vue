@@ -48,22 +48,32 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
       email: '',
       password: '',
       rememberMe: false,
-    }
+    };
   },
   methods: {
     signIn() {
       this.$validator.validateAll().then(() => {
         alert('Submitted signIn');
       });
-    }
+    },
   },
-}
+  computed: {
+    ...mapState('general', ['language']),
+  },
+  watch: {
+    language() {
+      this.errors.clear();
+    },
+  },
+};
 </script>
 
 <i18n>
