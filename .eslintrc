@@ -17,8 +17,10 @@
     "no-else-return": "off",
     "no-param-reassign": ["error", { props: false }],
   },
-  "plugins": ["jasmine"],
+  "plugins": ["html", "jasmine"],
   "env": {
-    "jasmine": true
+    "jasmine": true,
+    "es6": true,
+    "browser": true,
   }
 }

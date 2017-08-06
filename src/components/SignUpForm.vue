@@ -97,9 +97,7 @@ export default {
   },
   methods: {
     signUp() {
-      this.$validator.validateAll().then(() => {
-        alert('Submitted signUp');
-      });
+      this.$validator.validateAll().then(() => {});
     },
   },
   computed: {

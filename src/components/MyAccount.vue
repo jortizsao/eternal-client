@@ -7,11 +7,9 @@
 export default {
   props: ['id'],
   data() {
-    return {
-
-    }
-  }
-}
+    return {};
+  },
+};
 </script>
 <style>
 </style>

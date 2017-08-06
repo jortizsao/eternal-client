@@ -1,4 +1,3 @@
-scripts/
-spec/
 app/
-build/
+dist/
+static/

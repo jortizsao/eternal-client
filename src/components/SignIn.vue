@@ -25,15 +25,13 @@ import SignUpForm from './SignUpForm.vue';
 
 export default {
   data() {
-    return {
-
-    }
+    return {};
   },
   components: {
     SignInForm,
     SignUpForm,
   },
-}
+};
 </script>
 
 <i18n>

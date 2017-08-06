@@ -60,9 +60,7 @@ export default {
   },
   methods: {
     signIn() {
-      this.$validator.validateAll().then(() => {
-        alert('Submitted signIn');
-      });
+      this.$validator.validateAll().then(() => {});
     },
   },
   computed: {
