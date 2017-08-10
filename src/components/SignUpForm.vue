@@ -12,15 +12,12 @@
         </div>
         <hr class="signup-box-hr">
         <div class="signup-box-description">{{ $t('description') }}</div>
-        <!-- <div class="row">
-          {{> form/global-messages messages=form.messages}}
-          {{> form/global-errors errors=form.errors}}
-        </div> -->
         <div class="row">
           <div class="col-sm-6">
             <div class="signup-box-input">
               <span class="text-uppercase">{{ $t('selectTitle') }}</span><br>
-              <el-select class="signup-title-dropdown" :placeholder="$t('choose')" clearable v-model="title">
+              <el-select class="signup-title-dropdown" :placeholder="$t('choose')" clearable
+                v-model="title">
                 <el-option value="mr" :label="$t('personTitles.mr')"></el-option>
                 <el-option value="mrs" :label="$t('personTitles.mrs')"></el-option>
                 <el-option value="ms" :label="$t('personTitles.ms')"></el-option>
@@ -33,37 +30,50 @@
           <div class="col-sm-6">
             <div class="signup-box-input">
               <span>{{ $t('firstName') }}*</span><br>
-              <input v-validate="'required'" type="text" name="firstName" :model="firstName">
-              <p class="text-danger" v-show="errors.has('firstName')">{{ errors.first('firstName') }}</p>
+              <input v-validate="'required'" type="text" name="firstName"
+                v-model="firstName">
+              <p class="text-danger" v-show="errors.has('firstName')">
+                {{ errors.first('firstName') }}
+              </p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="signup-box-input">
               <span>{{ $t('secondName') }}*</span><br>
-              <input v-validate="'required'" type="text" name="lastName" :model="lastName">
-              <p class="text-danger" v-show="errors.has('lastName')">{{ errors.first('lastName') }}</p>
+              <input v-validate="'required'" type="text" name="lastName"
+                v-model="lastName">
+              <p class="text-danger" v-show="errors.has('lastName')">
+                {{ errors.first('lastName') }}
+              </p>
             </div>
           </div>
         </div>
         <hr class="signup-box-hr">
         <div class="signup-box-input">
           <span>{{ $t('email') }}*</span><br>
-          <input v-validate="'required|email'" type="email" name="email" :model="email">
+          <input v-validate="'required|email'" type="email" name="email"
+            v-model="email">
           <p class="text-danger" v-show="errors.has('email')">{{ errors.first('email') }}</p>
         </div>
         <div class="row">
           <div class="col-sm-6">
             <div class="signup-box-input">
               <span>{{ $t('password') }}*</span><br>
-              <input v-validate="'required'" type="password" name="signUpPassword" :model="password">
-              <p class="text-danger" v-show="errors.has('signUpPassword')">{{ errors.first('signUpPassword') }}</p>
+              <input v-validate="'required'" type="password" name="signUpPassword"
+                v-model="password">
+              <p class="text-danger" v-show="errors.has('signUpPassword')">
+                {{ errors.first('signUpPassword') }}
+              </p>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="signup-box-input">
               <span>{{ $t('confirmPassword') }}*</span><br>
-              <input v-validate="'required|confirmed:signUpPassword'" type="password" name="confirmPassword" :model="confirmPassword">
-              <p class="text-danger" v-show="errors.has('confirmPassword')">{{ errors.first('confirmPassword') }}</p>
+              <input v-validate="'required|confirmed:signUpPassword'" type="password"
+                name="confirmPassword" v-model="confirmPassword">
+              <p class="text-danger" v-show="errors.has('confirmPassword')">
+                {{ errors.first('confirmPassword') }}
+              </p>
             </div>
           </div>
         </div>
@@ -71,9 +81,13 @@
         <div class="signup-box-terms">
           <input v-validate="'required'" type="checkbox" name="agreeToTerms" :value="agreeToTerms">
           <span>{{ $t('agreeTo') }} <a href="#">{{ $t('termsAndConditions') }} </a></span>
-          <p class="text-danger" v-show="errors.has('agreeToTerms')">{{ errors.first('agreeToTerms') }}</p>
+          <p class="text-danger" v-show="errors.has('agreeToTerms')">
+            {{ errors.first('agreeToTerms') }}
+          </p>
         </div>
-        <div class="signup-box-policy">{{ $t('personalInfo') }} <a href="#">{{ $t('privacyPolicy') }}</a></div>
+        <div class="signup-box-policy">{{ $t('personalInfo') }}
+          <a href="#">{{ $t('privacyPolicy') }}</a>
+        </div>
         <button class="signup-register-btn">{{ $t('registerNow') }}</button>
       </form>
     </div>
@@ -82,6 +96,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import customersService from '@/services/customers.service';
 
 export default {
   data() {
@@ -97,7 +112,22 @@ export default {
   },
   methods: {
     signUp() {
-      this.$validator.validateAll().then(() => {});
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          return customersService
+            .signUp({
+              title: this.title,
+              firstName: this.firstName,
+              lastName: this.lastName,
+              email: this.email,
+              password: this.password,
+              confirmPassword: this.confirmPassword,
+            })
+            .then(customer =>
+              this.$router.push({ name: 'MyAccount', params: { id: customer.id } }),
+            );
+        }
+      });
     },
   },
   computed: {

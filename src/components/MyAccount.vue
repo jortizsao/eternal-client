@@ -1,6 +1,6 @@
 <template>
   <div id="my-account">
-
+    My account
   </div>
 </template>
 <script>

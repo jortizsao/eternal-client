@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
+import axios from 'axios';
 import { Select, Option } from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import App from './App.vue';
@@ -10,6 +11,9 @@ import store from './store';
 import './validator';
 import './assets/scss/main.scss';
 import './assets/scss/custom/my-custom.scss';
+
+// Set default url for api calls
+axios.defaults.baseURL = process.env.API_URL;
 
 Vue.config.productionTip = false;
 Vue.component(Select.name, Select);

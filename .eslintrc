@@ -7,6 +7,13 @@
       "experimentalObjectRestSpread": true
     }
   },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "build/webpack.base.conf.js",
+      },
+    },
+  },
   "extends": "airbnb/base",
   "rules": {
     "no-unused-vars": "warn",
@@ -16,6 +23,7 @@
     "consistent-return": "off",
     "no-else-return": "off",
     "no-param-reassign": ["error", { props: false }],
+    "arrow-parens": "off",
   },
   "plugins": ["html", "jasmine"],
   "env": {
