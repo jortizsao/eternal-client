@@ -114,6 +114,7 @@ export default {
     signUp() {
       this.$validator.validateAll().then(result => {
         if (result) {
+          this.$Progress.start();
           return customersService
             .signUp({
               title: this.title,
@@ -123,9 +124,13 @@ export default {
               password: this.password,
               confirmPassword: this.confirmPassword,
             })
-            .then(customer =>
-              this.$router.push({ name: 'MyAccount', params: { id: customer.id } }),
-            );
+            .then(customer => {
+              this.$Progress.finish();
+              this.$router.push({ name: 'MyAccount', params: { id: customer.id } });
+            })
+            .catch(() => {
+              this.$Progress.finish();
+            });
         }
       });
     },

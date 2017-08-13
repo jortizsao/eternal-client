@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import axios from 'axios';
+import VueProgressBar from 'vue-progressbar';
 import { Select, Option } from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import App from './App.vue';
@@ -18,6 +19,7 @@ axios.defaults.baseURL = process.env.API_URL;
 Vue.config.productionTip = false;
 Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
+Vue.use(VueProgressBar, { color: '#fff', failedColor: 'red', height: '3px' });
 
 /* eslint-disable no-new */
 new Vue({
