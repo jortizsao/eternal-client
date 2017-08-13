@@ -18,9 +18,7 @@ import HeaderComponent from './components/Header.vue';
 export default {
   name: 'app',
   data() {
-    return {
-      user: '',
-    };
+    return {};
   },
   created() {
     this.setLanguage(this.language);
@@ -32,7 +30,7 @@ export default {
     },
   },
   computed: {
-    ...mapState('general', ['language']),
+    ...mapState('general', ['language', 'user']),
   },
   watch: {
     language() {

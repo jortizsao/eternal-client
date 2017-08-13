@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import customersService from '@/services/customers.service';
 
 export default {
@@ -125,6 +125,7 @@ export default {
               confirmPassword: this.confirmPassword,
             })
             .then(customer => {
+              this.SET_USER(customer);
               this.$Progress.finish();
               this.$notify({
                 type: 'success',
@@ -142,6 +143,7 @@ export default {
         }
       });
     },
+    ...mapMutations('general', ['SET_USER']),
   },
   computed: {
     ...mapState('general', ['language']),
