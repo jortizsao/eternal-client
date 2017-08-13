@@ -13,18 +13,14 @@
       <div class="login-box-description">{{ $t('description') }}</div>
       <div class="login-box-input-wrapper">
         <form id="form-sign-in" @submit.prevent="signIn" method="post" action="/signIn">
-          <!-- <div class="row">
-            {{> form/global-messages messages=form.messages}}
-            {{> form/global-errors errors=form.errors}}
-          </div> -->
           <div class="login-box-input">
             <span>{{ $t('email') }}*</span><br>
-            <input type="email" v-validate="'required|email'" name="email" :model="email">
+            <input type="email" v-validate="'required|email'" name="email" v-model="email">
           </div>
           <p class="text-danger" v-show="errors.has('email')">{{ errors.first('email') }}</p>
           <div class="login-box-input">
             <span>{{ $t('password') }}*</span><br>
-            <input type="password" v-validate="'required'" name="password" :model="password">
+            <input type="password" v-validate="'required'" name="password" v-model="password">
           </div>
           <p class="text-danger" v-show="errors.has('password')">{{ errors.first('password') }}</p>
           <div class="clearfix">
@@ -48,7 +44,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
+import customersService from '@/services/customers.service';
 
 export default {
   data() {
@@ -60,8 +57,34 @@ export default {
   },
   methods: {
     signIn() {
-      this.$validator.validateAll().then(() => {});
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          this.$Progress.start();
+          return customersService
+            .signIn({
+              email: this.email,
+              password: this.password,
+            })
+            .then(({ customer }) => {
+              this.SET_USER(customer);
+              this.$Progress.finish();
+              this.$notify({
+                type: 'success',
+                text: `Welcome back <b>${this.$options.filters.capitalize(
+                  customer.firstName.toLowerCase(),
+                )}</b>!`,
+              });
+              this.$router.push({ name: 'MyAccount', params: { id: customer.id } });
+            })
+            .catch(err => {
+              const text = err.response.status === 401 ? 'Invalid credentials' : undefined;
+              this.$notify({ type: 'error', text });
+              this.$Progress.finish();
+            });
+        }
+      });
     },
+    ...mapMutations('general', ['SET_USER']),
   },
   computed: {
     ...mapState('general', ['language']),

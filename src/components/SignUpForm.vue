@@ -130,7 +130,7 @@ export default {
               this.$notify({
                 type: 'success',
                 text: `Welcome <b>${this.$options.filters.capitalize(
-                  this.firstName.toLowerCase(),
+                  customer.firstName.toLowerCase(),
                 )}</b>!`,
               });
               this.$router.push({ name: 'MyAccount', params: { id: customer.id } });
