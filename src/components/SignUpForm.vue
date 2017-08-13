@@ -126,9 +126,17 @@ export default {
             })
             .then(customer => {
               this.$Progress.finish();
+              this.$notify({
+                type: 'success',
+                text: `Welcome <b>${this.$options.filters.capitalize(
+                  this.firstName.toLowerCase(),
+                )}</b>!`,
+              });
               this.$router.push({ name: 'MyAccount', params: { id: customer.id } });
             })
-            .catch(() => {
+            .catch(err => {
+              const text = err.response.status === 400 ? err.response.data.message : undefined;
+              this.$notify({ type: 'error', text });
               this.$Progress.finish();
             });
         }

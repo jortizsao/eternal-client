@@ -6,11 +6,13 @@
       <router-view></router-view>
     </div>
     <vue-progress-bar></vue-progress-bar>
+    <custom-notifications></custom-notifications>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import CustomNotifications from '@/notifications/CustomNotifications.vue';
 import HeaderComponent from './components/Header.vue';
 
 export default {
@@ -39,6 +41,7 @@ export default {
   },
   components: {
     HeaderComponent,
+    CustomNotifications,
   },
 };
 </script>

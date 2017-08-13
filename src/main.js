@@ -3,6 +3,8 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueProgressBar from 'vue-progressbar';
+import Notifications from 'vue-notification';
+import Vue2Filters from 'vue2-filters';
 import { Select, Option } from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import App from './App.vue';
@@ -20,6 +22,8 @@ Vue.config.productionTip = false;
 Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
 Vue.use(VueProgressBar, { color: '#fff', failedColor: 'red', height: '3px' });
+Vue.use(Notifications);
+Vue.use(Vue2Filters);
 
 /* eslint-disable no-new */
 new Vue({
