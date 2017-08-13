@@ -1,4 +1,4 @@
 export default {
   language: 'en',
-  user: '',
+  user: undefined,
 };

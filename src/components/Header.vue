@@ -43,7 +43,7 @@
               </li>
 
               <li v-if="user" class="list-item-user">
-                <a href="signOut()" class="link-user">
+                <a @click.prevent="signOut()" href="" class="link-user">
                   <span>{{ $t('signOut') }}</span>
                 </a>
               </li>
@@ -88,6 +88,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import MiniCart from './MiniCart.vue';
 import LocationSelector from './LocationSelector.vue';
 import Logo from './Logo.vue';
@@ -98,7 +99,16 @@ export default {
   data() {
     return {};
   },
-  props: ['user'],
+  props: {
+    user: Object,
+  },
+  methods: {
+    signOut() {
+      this.SET_USER();
+      this.$router.push({ name: 'Home' });
+    },
+    ...mapMutations('general', ['SET_USER']),
+  },
   components: {
     MiniCart,
     LocationSelector,

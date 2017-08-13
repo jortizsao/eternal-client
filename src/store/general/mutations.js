@@ -3,9 +3,13 @@ export default {
     state.language = language;
   },
   SET_USER(state, user) {
-    state.user = {
-      ...state.user,
-      ...user,
-    };
+    if (user) {
+      state.user = {
+        ...state.user,
+        ...user,
+      };
+    } else {
+      state.user = undefined;
+    }
   },
 };
