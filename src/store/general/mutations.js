@@ -9,7 +9,7 @@ export default {
         ...user,
       };
     } else {
-      state.user = undefined;
+      state.user = null;
     }
   },
 };
