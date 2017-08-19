@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - 8
+cache: pip
+install:
+  - yarn install
+  - pip install awscli
+script:
+  - npm run build
+deploy:
+  on:
+    branch: develop
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  region: $AWS_S3_REGION
+  bucket: $AWS_S3_BUCKET
+  local_dir: app
+  skip_cleanup: true
+after_deploy:
+  - aws configure set preview.cloudfront true
+  - aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
