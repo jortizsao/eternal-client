@@ -4,7 +4,7 @@ node_js:
 cache: pip
 install:
   - yarn install
-  - pip install awscli
+  - pip install awscli --user 
 script:
   - npm run build
 deploy:
