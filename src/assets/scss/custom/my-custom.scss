@@ -1,4 +1,4 @@
-@import "../_general";
+@import '../_general';
 
 $border-grey: #eeeeee;
 
@@ -44,7 +44,7 @@ $border-grey: #eeeeee;
         width: 120px;
         color: $white;
         border: 1px solid $white;
-        background: transparent url("../../img/arrow-67-white.png") no-repeat 90% 50%;
+        background: transparent url('../../img/arrow-67-white.png') no-repeat 90% 50%;
         background-size: 10px;
         margin: 10px;
         text-transform: capitalize;
@@ -139,5 +139,28 @@ $border-grey: #eeeeee;
     border-radius: 0;
     color: $mine-shaft;
     border-color: $border-grey;
+  }
+}
+.container--home {
+  margin: 0;
+  padding: 0;
+}
+.banner-home--left {
+  border-right: 1px solid #fff;
+}
+.banner-home--right {
+  border-left: 1px solid #fff;
+}
+.banner-home--top {
+  border-bottom: 1px solid #fff;
+}
+.banner-home--bottom {
+  border-top: 1px solid #fff;
+}
+.home-banner-option-three {
+  .banner-text {
+    top: 0;
+    bottom: auto;
+    background: rgba(0, 0, 0, 0);
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div id="custom-notifications">
     <notifications position="top center" classes="notification" animation-name="v-fade" :width="getWidth()">
-      <template slot="body" scope="props">
+      <template slot="body" slot-scope="props">
         <div :class="['notification', props.item.type]">
           <div class="row">
             <div class="col-sm-2 notification-icon">

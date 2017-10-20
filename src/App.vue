@@ -2,7 +2,7 @@
   <div id="app">
     <div class="darkbg hidden"></div>
     <header-component :user="user"></header-component>
-    <div class="container">
+    <div :class="containerClass">
       <router-view></router-view>
     </div>
     <vue-progress-bar></vue-progress-bar>
@@ -30,6 +30,9 @@ export default {
     },
   },
   computed: {
+    containerClass() {
+      return this.$route.name === 'Home' ? 'container--home' : 'container';
+    },
     ...mapState('general', ['language', 'user']),
   },
   watch: {

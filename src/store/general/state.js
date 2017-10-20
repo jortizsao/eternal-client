@@ -1,4 +1,4 @@
 export default {
-  language: 'en',
+  language: process.env.DEFAULT_LANGUAGE,
   user: null,
 };

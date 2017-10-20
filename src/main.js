@@ -11,6 +11,7 @@ import App from './App.vue';
 import router from './router';
 import i18n from './i18n';
 import store from './store';
+import Storyblok from './plugins/storyblok';
 import './validator';
 import './assets/scss/main.scss';
 import './assets/scss/custom/my-custom.scss';
@@ -24,6 +25,7 @@ Vue.component(Option.name, Option);
 Vue.use(VueProgressBar, { color: '#fff', failedColor: 'red', height: '3px' });
 Vue.use(Notifications);
 Vue.use(Vue2Filters);
+Vue.use(Storyblok);
 
 /* eslint-disable no-new */
 new Vue({
