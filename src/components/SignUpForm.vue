@@ -124,7 +124,7 @@ export default {
               password: this.password,
               confirmPassword: this.confirmPassword,
             })
-            .then(customer => {
+            .then(({ customer }) => {
               this.SET_USER(customer);
               this.$Progress.finish();
               this.$notify({
