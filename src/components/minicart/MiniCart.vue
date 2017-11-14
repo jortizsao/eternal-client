@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="minicart">
-    <template v-if="cart && cart.lineItems > 0">
+    <template v-if="cart && cart.lineItems.length">
       <button class="not-empty link-your-bag icon-hand-bag">
         <span class="hidden-xs hidden-sm cart">{{ $t('miniCart') }}</span>
         <span class="cart-item-number">{{cart.lineItems.length}}</span>
