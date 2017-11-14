@@ -3,9 +3,10 @@ node_js:
   - 8
 cache: pip
 install:
-  - yarn install
-  - pip install awscli --user 
+  - npm install
+  - pip install awscli --user
 script:
+  - NODE_ENV=test npm test
   - npm run build
 deploy:
   on:
