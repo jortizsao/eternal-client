@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Minicart :props :cart should render 0 items when there is no cart 1`] = `
+<div class="minicart">
+    <a href="" class="not-empty link-your-bag icon-hand-bag"><span class="hidden-xs hidden-sm cart"></span> <span class="cart-item-number">0</span></a>
+</div>
+`;
+
+exports[`Minicart :props :cart should render the number of items in the cart 1`] = `
+<div class="minicart">
+    <button class="not-empty link-your-bag icon-hand-bag"><span class="hidden-xs hidden-sm cart"></span> <span class="cart-item-number">1</span></button>
+    <div class="col-xs-12">
+        <div class="nav-minicart"></div>
+    </div>
+</div>
+`;
