@@ -89,7 +89,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
-import MiniCart from './MiniCart.vue';
+import MiniCart from '@/components/minicart/MiniCart.vue';
 import LocationSelector from './LocationSelector.vue';
 import Logo from './Logo.vue';
 import SearchBar from './SearchBar.vue';
