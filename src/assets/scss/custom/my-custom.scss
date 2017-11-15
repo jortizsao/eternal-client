@@ -32,6 +32,11 @@ $border-grey: #eeeeee;
   }
 }
 .nav-list {
+  li:active {
+    position: relative;
+    top: 2px;
+  }
+
   .list-item-location {
     .location-dropdown {
       display: block;
@@ -163,4 +168,8 @@ $border-grey: #eeeeee;
     bottom: auto;
     background: rgba(0, 0, 0, 0);
   }
+}
+.logo:active {
+  position: relative;
+  top: 2px;
 }

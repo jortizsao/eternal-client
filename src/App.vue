@@ -3,7 +3,15 @@
     <div class="darkbg hidden"></div>
     <header-component :user="user"></header-component>
     <div :class="containerClass">
-      <router-view></router-view>
+      <transition
+        :duration="{ enter: 900, leave: 600 }"
+        mode="out-in"
+        name="custom-classes-transition"
+        :enter-active-class="enterTransition"
+        :leave-active-class="leaveTransition"
+      >
+        <router-view></router-view>
+      </transition>
     </div>
     <vue-progress-bar></vue-progress-bar>
     <custom-notifications></custom-notifications>
@@ -18,7 +26,10 @@ import HeaderComponent from './components/Header.vue';
 export default {
   name: 'app',
   data() {
-    return {};
+    return {
+      enterTransition: '',
+      leaveTransition: '',
+    };
   },
   created() {
     this.setLanguage(this.language);
@@ -38,6 +49,17 @@ export default {
   watch: {
     language() {
       this.setLanguage(this.language);
+    },
+    $route(to, from) {
+      const toDepth = to.path.split('/').length;
+      const fromDepth = from.path.split('/').length;
+      if (toDepth < fromDepth) {
+        this.enterTransition = 'slideInLeft';
+        this.leaveTransition = 'slideOutRight';
+      } else {
+        this.enterTransition = 'slideInRight';
+        this.leaveTransition = 'slideOutLeft';
+      }
     },
   },
   components: {
