@@ -7,7 +7,6 @@ import Notifications from 'vue-notification';
 import Vue2Filters from 'vue2-filters';
 import { Select, Option } from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
-import 'vue2-animate/dist/vue2-animate.min.css';
 import App from './App.vue';
 import router from './router';
 import i18n from './i18n';

@@ -3,13 +3,7 @@
     <div class="darkbg hidden"></div>
     <header-component :user="user"></header-component>
     <div :class="containerClass">
-      <transition
-        :duration="{ enter: 900, leave: 600 }"
-        mode="out-in"
-        name="custom-classes-transition"
-        :enter-active-class="enterTransition"
-        :leave-active-class="leaveTransition"
-      >
+      <transition :name="transition">
         <router-view></router-view>
       </transition>
     </div>
@@ -27,8 +21,7 @@ export default {
   name: 'app',
   data() {
     return {
-      enterTransition: '',
-      leaveTransition: '',
+      transition: '',
     };
   },
   created() {
@@ -53,13 +46,7 @@ export default {
     $route(to, from) {
       const toDepth = to.path.split('/').length;
       const fromDepth = from.path.split('/').length;
-      if (toDepth < fromDepth) {
-        this.enterTransition = 'slideInLeft';
-        this.leaveTransition = 'slideOutRight';
-      } else {
-        this.enterTransition = 'slideInRight';
-        this.leaveTransition = 'slideOutLeft';
-      }
+      this.transition = toDepth < fromDepth ? 'slideRight' : 'slideLeft';
     },
   },
   components: {
@@ -74,4 +61,19 @@ $bootstrap-sass-asset-helper: true;
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
 
+.slideLeft-leave-active, .slideRight-leave-active {
+  display: none;
+}
+
+.slideLeft-enter-active, .slideRight-enter-active {
+  transition: 0.3s;
+}
+
+.slideLeft-enter {
+  transform: translate(100%, 0);
+}
+
+.slideRight-enter {
+  transform: translate(-100%, 0);
+}
 </style>
