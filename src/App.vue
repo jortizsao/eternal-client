@@ -66,7 +66,7 @@ $bootstrap-sass-asset-helper: true;
 }
 
 .slideLeft-enter-active, .slideRight-enter-active {
-  transition: 0.3s;
+  transition: 0.5s;
 }
 
 .slideLeft-enter {
