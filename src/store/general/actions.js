@@ -16,26 +16,18 @@ export default function () {
 
   return {
     SIGN_IN({ commit }, params) {
-      return customersService.signIn(params).then(({ customer, token }) => {
-        return setAuthenticationData(
-          { commit },
-          {
-            user: customer,
-            token,
-          },
+      return customersService
+        .signIn(params)
+        .then(({ customer, token }) =>
+          setAuthenticationData({ commit }, { user: customer, token }),
         );
-      });
     },
     SIGN_UP({ commit }, params) {
-      return customersService.signUp(params).then(({ customer, token }) => {
-        return setAuthenticationData(
-          { commit },
-          {
-            user: customer,
-            token,
-          },
+      return customersService
+        .signUp(params)
+        .then(({ customer, token }) =>
+          setAuthenticationData({ commit }, { user: customer, token }),
         );
-      });
     },
     SIGN_OUT({ commit }) {
       commit('SET_USER', null);
