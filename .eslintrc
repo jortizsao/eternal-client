@@ -30,5 +30,8 @@
     "jasmine": true,
     "es6": true,
     "browser": true,
+  },
+  "globals": {
+    "jest": false
   }
 }
