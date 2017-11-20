@@ -93,17 +93,9 @@
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
   "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
+    "moduleFileExtensions": ["js", "json", "vue"],
     "transform": {
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
@@ -113,11 +105,8 @@
     },
     "collectCoverage": true,
     "mapCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,vue}"
-    ],
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
-    ]
+    "coverageReporters": ["json", "lcov", "text-summary"],
+    "collectCoverageFrom": ["src/**/*.{js,vue}"],
+    "snapshotSerializers": ["<rootDir>/node_modules/jest-serializer-vue"]
   }
 }

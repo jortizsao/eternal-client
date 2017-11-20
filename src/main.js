@@ -2,19 +2,27 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import axios from 'axios';
-import VueProgressBar from 'vue-progressbar';
-import Notifications from 'vue-notification';
-import Vue2Filters from 'vue2-filters';
+import vueProgressBar from 'vue-progressbar';
+import notifications from 'vue-notification';
+import vue2Filters from 'vue2-filters';
 import { Select, Option } from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import App from './App.vue';
-import router from './router';
-import i18n from './i18n';
-import store from './store';
-import Storyblok from './plugins/storyblok';
+import Router from './router';
+import I18n from './i18n';
+import storyblok from './plugins/storyblok';
+import Store from './store';
+import Authentication from './plugins/authentication';
 import './validator';
 import './assets/scss/main.scss';
 import './assets/scss/custom/my-custom.scss';
+
+const store = Store();
+const i18n = I18n();
+const authentication = Authentication({
+  store,
+});
+const router = Router({ authentication });
 
 // Set default url for api calls
 axios.defaults.baseURL = process.env.API_URL;
@@ -22,10 +30,11 @@ axios.defaults.baseURL = process.env.API_URL;
 Vue.config.productionTip = false;
 Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
-Vue.use(VueProgressBar, { color: '#fff', failedColor: 'red', height: '3px' });
-Vue.use(Notifications);
-Vue.use(Vue2Filters);
-Vue.use(Storyblok);
+Vue.use(vueProgressBar, { color: '#fff', failedColor: 'red', height: '3px' });
+Vue.use(notifications);
+Vue.use(vue2Filters);
+Vue.use(storyblok);
+Vue.use(authentication);
 
 /* eslint-disable no-new */
 new Vue({
