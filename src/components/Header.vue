@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import MiniCart from '@/components/minicart/MiniCart.vue';
 import LocationSelector from './LocationSelector.vue';
 import Logo from './Logo.vue';
@@ -104,10 +104,10 @@ export default {
   },
   methods: {
     signOut() {
-      this.SET_USER();
+      this.SIGN_OUT();
       this.$router.push({ name: 'Home' });
     },
-    ...mapMutations('general', ['SET_USER']),
+    ...mapActions('general', ['SIGN_OUT']),
   },
   components: {
     MiniCart,

@@ -44,8 +44,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
-import customersService from '@/services/customers.service';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -60,21 +59,19 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           this.$Progress.start();
-          return customersService
-            .signIn({
-              email: this.email,
-              password: this.password,
-            })
-            .then(({ customer }) => {
-              this.SET_USER(customer);
+          return this.SIGN_IN({
+            email: this.email,
+            password: this.password,
+          })
+            .then(() => {
               this.$Progress.finish();
               this.$notify({
                 type: 'success',
                 text: `Welcome back <b>${this.$options.filters.capitalize(
-                  customer.firstName.toLowerCase(),
+                  this.user.firstName.toLowerCase(),
                 )}</b>!`,
               });
-              this.$router.push({ name: 'MyAccount', params: { id: customer.id } });
+              this.$router.push({ name: 'MyAccount', params: { id: this.user.id } });
             })
             .catch(err => {
               const text = err.response.status === 401 ? 'Invalid credentials' : undefined;
@@ -84,10 +81,10 @@ export default {
         }
       });
     },
-    ...mapMutations('general', ['SET_USER']),
+    ...mapActions('general', ['SIGN_IN']),
   },
   computed: {
-    ...mapState('general', ['language']),
+    ...mapState('general', ['language', 'user']),
   },
   watch: {
     language() {
