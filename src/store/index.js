@@ -4,9 +4,9 @@ import createPersist from 'vuex-localstorage';
 import general from './general';
 import authentication from './authentication';
 
-Vue.use(Vuex);
-
 export default function () {
+  Vue.use(Vuex);
+
   return new Vuex.Store({
     modules: {
       general: {

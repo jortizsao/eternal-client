@@ -4,7 +4,9 @@
     <header-component :user="user"></header-component>
     <div :class="containerClass">
       <transition :name="transition">
-        <router-view></router-view>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </transition>
     </div>
     <vue-progress-bar></vue-progress-bar>
@@ -66,7 +68,7 @@ $bootstrap-sass-asset-helper: true;
 }
 
 .slideLeft-enter-active, .slideRight-enter-active {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .slideLeft-enter {
