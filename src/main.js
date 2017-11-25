@@ -19,9 +19,7 @@ import './assets/scss/custom/my-custom.scss';
 
 const store = Store();
 const i18n = I18n();
-const authentication = Authentication({
-  store,
-});
+const authentication = Authentication({ store });
 const router = Router({ authentication });
 
 // Set default url for api calls

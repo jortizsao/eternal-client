@@ -29,10 +29,17 @@ export default {
   created() {
     this.setLanguage(this.language);
   },
+  mounted() {
+    this.removeSplash();
+  },
   methods: {
     setLanguage(language) {
       this.$i18n.locale = language;
       this.$validator.setLocale(language);
+    },
+    removeSplash() {
+      document.body.removeAttribute('style');
+      document.getElementById('splash').style.display = 'none';
     },
   },
   computed: {
@@ -68,7 +75,7 @@ $bootstrap-sass-asset-helper: true;
 }
 
 .slideLeft-enter-active, .slideRight-enter-active {
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .slideLeft-enter {
