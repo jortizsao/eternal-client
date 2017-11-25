@@ -65,12 +65,6 @@ export default {
           })
             .then(() => {
               this.$Progress.finish();
-              this.$notify({
-                type: 'success',
-                text: `Welcome back <b>${this.$options.filters.capitalize(
-                  this.user.firstName.toLowerCase(),
-                )}</b>!`,
-              });
               this.$router.push({ name: 'MyAccount', params: { id: this.user.id } });
             })
             .catch(err => {

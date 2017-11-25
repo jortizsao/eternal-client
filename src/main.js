@@ -30,7 +30,7 @@ axios.defaults.baseURL = process.env.API_URL;
 Vue.config.productionTip = false;
 Vue.component(Select.name, Select);
 Vue.component(Option.name, Option);
-Vue.use(vueProgressBar, { color: '#fff', failedColor: 'red', height: '3px' });
+Vue.use(vueProgressBar, { color: '#FFBA27', failedColor: 'red', height: '3px' });
 Vue.use(notifications);
 Vue.use(vue2Filters);
 Vue.use(storyblok);
