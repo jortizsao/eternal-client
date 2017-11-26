@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="darkbg hidden"></div>
-    <header-component :user="user"></header-component>
+    <header-component></header-component>
     <div :class="containerClass">
       <transition :name="transition">
         <keep-alive>
@@ -46,7 +46,7 @@ export default {
     containerClass() {
       return this.$route.name === 'Home' ? 'container--home' : 'container';
     },
-    ...mapState('general', ['language', 'user']),
+    ...mapState('general', ['language']),
   },
   watch: {
     language() {

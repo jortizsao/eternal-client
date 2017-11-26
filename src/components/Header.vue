@@ -48,7 +48,7 @@
                 </a>
               </li>
 
-              <li v-if="user" class="list-item-user">
+              <li v-if="isUserAuthenticated" class="list-item-user">
                 <router-link class="link-user icon-user" :to="{ name: 'MyAccount', params: { id: user.id } }">
                   <span class="hidden-xs hidden-sm">{{ user.firstName }}</span>
                 </router-link>
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import MiniCart from '@/components/minicart/MiniCart.vue';
 import LocationSelector from './LocationSelector.vue';
 import Logo from './Logo.vue';
@@ -99,15 +99,18 @@ export default {
   data() {
     return {};
   },
-  props: {
-    user: Object,
-  },
   methods: {
     signOut() {
       this.SIGN_OUT();
       this.$router.push({ name: 'Home' });
     },
     ...mapActions('general', ['SIGN_OUT']),
+  },
+  computed: {
+    ...mapState('authentication', ['user']),
+    isUserAuthenticated() {
+      return this.$authentication.isUserAuthenticated();
+    },
   },
   components: {
     MiniCart,

@@ -42,6 +42,16 @@ export default function ({ authentication }) {
         path: '/user/signIn',
         name: 'SignIn',
         component: () => import('@/components/SignIn.vue'),
+        beforeEnter: (to, from, next) => {
+          if (authentication.isUserAuthenticated()) {
+            next({
+              name: 'MyAccount',
+              params: { id: authentication.getUser().id },
+            });
+          } else {
+            next();
+          }
+        },
       },
       {
         path: '/user/forgotPassword',
