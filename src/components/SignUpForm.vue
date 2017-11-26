@@ -143,7 +143,8 @@ export default {
     ...mapActions('general', ['SIGN_UP']),
   },
   computed: {
-    ...mapState('general', ['language', 'user']),
+    ...mapState('general', ['language']),
+    ...mapState('authentication', ['user']),
   },
   watch: {
     language() {

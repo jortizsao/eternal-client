@@ -47,7 +47,7 @@ describe('General Store', () => {
 
     describe('when sign in a customer', () => {
       it('on success', () => {
-        expect.assertions(3);
+        expect.assertions(2);
 
         const signInRequest = {
           email: 'javier.ortizsaorin@gmail.com',
@@ -58,16 +58,16 @@ describe('General Store', () => {
 
         return store.dispatch('general/SIGN_IN', signInRequest).then(() => {
           expect(customersService.signIn).toHaveBeenCalledWith(signInRequest);
-          expect(store.state.general.user).toEqual(customerResponse.customer);
           expect(store.state.authentication).toEqual({
             token: customerResponse.token,
             tokenExpiresAt: '1982-02-12T00:00:00.000Z', // new Date(382320000 * 1000).toISOString()
+            user: customerResponse.customer,
           });
         });
       });
 
       it('on failure', () => {
-        expect.assertions(3);
+        expect.assertions(2);
 
         const signInRequest = {
           email: 'javier.ortizsaorin@gmail.com',
@@ -85,10 +85,10 @@ describe('General Store', () => {
 
         return store.dispatch('general/SIGN_IN', signInRequest).catch(() => {
           expect(customersService.signIn).toHaveBeenCalledWith(signInRequest);
-          expect(store.state.general.user).toBe(null);
           expect(store.state.authentication).toEqual({
             token: '',
             tokenExpiresAt: '',
+            user: null,
           });
         });
       });
@@ -96,7 +96,7 @@ describe('General Store', () => {
 
     describe('when sign up a customer', () => {
       it('on success', () => {
-        expect.assertions(3);
+        expect.assertions(2);
 
         const signUpRequest = {
           firstName: 'javier',
@@ -110,16 +110,16 @@ describe('General Store', () => {
 
         return store.dispatch('general/SIGN_UP', signUpRequest).then(() => {
           expect(customersService.signUp).toHaveBeenCalledWith(signUpRequest);
-          expect(store.state.general.user).toEqual(customerResponse.customer);
           expect(store.state.authentication).toEqual({
             token: customerResponse.token,
             tokenExpiresAt: '1982-02-12T00:00:00.000Z', // new Date(382320000 * 1000).toISOString()
+            user: customerResponse.customer,
           });
         });
       });
 
       it('on failure', () => {
-        expect.assertions(3);
+        expect.assertions(2);
 
         const signUpRequest = {
           firstName: 'javier',
@@ -140,10 +140,10 @@ describe('General Store', () => {
 
         return store.dispatch('general/SIGN_UP', signUpRequest).catch(() => {
           expect(customersService.signUp).toHaveBeenCalledWith(signUpRequest);
-          expect(store.state.general.user).toBe(null);
           expect(store.state.authentication).toEqual({
             token: '',
             tokenExpiresAt: '',
+            user: null,
           });
         });
       });
@@ -151,7 +151,7 @@ describe('General Store', () => {
 
     describe('when sign out a customer', () => {
       it('on success', () => {
-        expect.assertions(2);
+        expect.assertions(1);
 
         const signInRequest = {
           email: 'javier.ortizsaorin@gmail.com',
@@ -163,10 +163,10 @@ describe('General Store', () => {
         return store.dispatch('general/SIGN_IN', signInRequest).then(() => {
           store.dispatch('general/SIGN_OUT');
 
-          expect(store.state.general.user).toBe(null);
           expect(store.state.authentication).toEqual({
             token: '',
             tokenExpiresAt: '',
+            user: null,
           });
         });
       });

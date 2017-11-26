@@ -12,6 +12,7 @@ import Router from './router';
 import I18n from './i18n';
 import storyblok from './plugins/storyblok';
 import Store from './store';
+import UtilsAuthentication from './utils/authentication/utils.authentication';
 import Authentication from './plugins/authentication';
 import './validator';
 import './assets/scss/main.scss';
@@ -19,7 +20,11 @@ import './assets/scss/custom/my-custom.scss';
 
 const store = Store();
 const i18n = I18n();
-const authentication = Authentication({ store });
+const utilsAuthentication = UtilsAuthentication();
+const authentication = Authentication({
+  authentication: store.state.authentication,
+  utilsAuthentication,
+});
 const router = Router({ authentication });
 
 // Set default url for api calls

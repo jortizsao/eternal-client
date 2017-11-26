@@ -65,7 +65,10 @@ export default {
           })
             .then(() => {
               this.$Progress.finish();
-              this.$router.push({ name: 'MyAccount', params: { id: this.user.id } });
+              this.$router.push({
+                name: 'MyAccount',
+                params: { id: this.user.id },
+              });
             })
             .catch(err => {
               const text = err.response.status === 401 ? 'Invalid credentials' : undefined;
@@ -78,7 +81,8 @@ export default {
     ...mapActions('general', ['SIGN_IN']),
   },
   computed: {
-    ...mapState('general', ['language', 'user']),
+    ...mapState('general', ['language']),
+    ...mapState('authentication', ['user']),
   },
   watch: {
     language() {

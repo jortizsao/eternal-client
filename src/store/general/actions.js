@@ -7,7 +7,7 @@ export default function () {
   function setAuthenticationData({ commit }, { user, token }) {
     const { exp } = utilsAuthentication.decodeToken(token);
 
-    commit('SET_USER', user);
+    commit('authentication/SET_USER', user, { root: true });
     commit('authentication/SET_TOKEN', token, { root: true });
     commit('authentication/SET_TOKEN_EXPIRES_AT', new Date(exp * 1000).toISOString(), {
       root: true,
@@ -30,7 +30,7 @@ export default function () {
         );
     },
     SIGN_OUT({ commit }) {
-      commit('SET_USER', null);
+      commit('authentication/SET_USER', null, { root: true });
       commit('authentication/SET_TOKEN', '', { root: true });
       commit('authentication/SET_TOKEN_EXPIRES_AT', '', { root: true });
     },
