@@ -32,9 +32,9 @@ $border-grey: #eeeeee;
   }
 }
 .nav-list {
-  li:active {
+  > li:active {
     position: relative;
-    top: 2px;
+    top: 1px;
   }
 
   .list-item-location {
@@ -171,5 +171,5 @@ $border-grey: #eeeeee;
 }
 .logo:active {
   position: relative;
-  top: 2px;
+  top: 1px;
 }
