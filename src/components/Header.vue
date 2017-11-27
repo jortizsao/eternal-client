@@ -42,7 +42,7 @@
                 <mini-cart></mini-cart>
               </li>
 
-              <li v-if="user" class="list-item-user">
+              <li v-if="isUserAuthenticated" class="list-item-user">
                 <a @click.prevent="signOut()" href="" class="link-user">
                   <span>{{ $t('signOut') }}</span>
                 </a>
