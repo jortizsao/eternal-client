@@ -1,17 +1,19 @@
 <template>
-  <div id="app">
-    <div class="darkbg hidden"></div>
-    <header-component></header-component>
-    <div :class="containerClass">
-      <transition :name="transition">
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
-      </transition>
+  <transition name="appFade">
+    <div id="app" v-show="isShown">
+      <div class="darkbg hidden"></div>
+      <header-component></header-component>
+      <div :class="containerClass">
+        <transition :name="transition">
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
+        </transition>
+      </div>
+      <vue-progress-bar></vue-progress-bar>
+      <custom-notifications></custom-notifications>
     </div>
-    <vue-progress-bar></vue-progress-bar>
-    <custom-notifications></custom-notifications>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -24,13 +26,23 @@ export default {
   data() {
     return {
       transition: '',
+      isShown: false,
     };
   },
   created() {
     this.setLanguage(this.language);
   },
   mounted() {
-    this.removeSplash();
+    const splashDuration = process.env.SPLASH_DURATION
+      ? parseInt(process.env.SPLASH_DURATION, 10)
+      : 2000;
+    const timeRemaining = splashDuration - (Date.now() - window.indexLoadedAt);
+
+    if (timeRemaining > 0) {
+      setTimeout(this.removeSplash, timeRemaining);
+    } else {
+      this.removeSplash();
+    }
   },
   methods: {
     setLanguage(language) {
@@ -39,7 +51,8 @@ export default {
     },
     removeSplash() {
       document.body.removeAttribute('style');
-      document.getElementById('splash').style.display = 'none';
+      document.getElementById('splash').classList.add('fadeout');
+      this.isShown = true;
     },
   },
   computed: {
@@ -84,5 +97,12 @@ $bootstrap-sass-asset-helper: true;
 
 .slideRight-enter {
   transform: translate(-100%, 0);
+}
+
+.appFade-enter-active, .appFade-leave-active {
+  transition: opacity 2s
+}
+.appFade-enter, .appFade-leave-to {
+  opacity: 0.1;
 }
 </style>
