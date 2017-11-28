@@ -100,7 +100,7 @@ $bootstrap-sass-asset-helper: true;
 }
 
 .appFade-enter-active, .appFade-leave-active {
-  transition: opacity 2s
+  transition: opacity 0.5s
 }
 .appFade-enter, .appFade-leave-to {
   opacity: 0.1;

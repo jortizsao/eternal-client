@@ -22,7 +22,7 @@
 
       #splash.fadeout {
         opacity: 0;
-        animation: fadeout 2s;
+        animation: fadeout 1s;
       }
 
       .splash__logo {
@@ -33,6 +33,15 @@
         left: 50%;
         margin-left: -128px;
         margin-top: -160px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .splash__logo {
+          width: 168px;
+          height: 168px;
+          margin-left: -88px;
+          margin-top: -106px;
+        }
       }
 
       .splash__logo--in {
