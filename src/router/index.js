@@ -34,7 +34,7 @@ export default function ({ authentication }) {
       {
         path: '/user/:id/myAccount',
         name: 'MyAccount',
-        component: () => import('@/components/MyAccount.vue'),
+        component: () => import('@/components/my-account/MyAccount.vue'),
         props: true,
         meta: { requiresAuthentication: true },
       },
