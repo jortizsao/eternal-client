@@ -9,6 +9,7 @@ import cmsMixin from '@/mixins/cms.mixin';
 import { mapState } from 'vuex';
 
 export default {
+  name: 'home',
   created() {
     this.setCmsStorySlug(`${this.language}/home`);
   },

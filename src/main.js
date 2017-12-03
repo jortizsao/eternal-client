@@ -16,7 +16,7 @@ import UtilsAuthentication from './utils/authentication/utils.authentication';
 import Authentication from './plugins/authentication';
 import './validator';
 import './assets/scss/main.scss';
-import './assets/scss/custom/my-custom.scss';
+import './assets/scss/my-custom.scss';
 
 const store = Store();
 const i18n = I18n();

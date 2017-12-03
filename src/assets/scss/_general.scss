@@ -4,21 +4,21 @@
 /*
 /*****************************************************************************/
 
-$white: #FFFFFF;
+$white: #ffffff;
 
 // GRAY
-$alto: #D6D6D6;
-$bombay: #AAAEB2;
+$alto: #d6d6d6;
+$bombay: #aaaeb2;
 $gray: #858585;
-$silver-chalice: #ADADAD;
-$spring-wood: #F5F2EA;
-$timberwolf: #D9D7CE;
-$wild-sand: #F5F5F5;
+$silver-chalice: #adadad;
+$spring-wood: #f5f2ea;
+$timberwolf: #d9d7ce;
+$wild-sand: #f5f5f5;
 $snow-grey: #f2f2f2;
 
 // BLUE
-$ebony-clay: #2A343F;
-$ship-cove: #6989C2;
+$ebony-clay: #2a343f;
+$ship-cove: #6989c2;
 $limed-spruce: #353e49;
 $river-bed: #3b4551;
 
@@ -26,17 +26,17 @@ $river-bed: #3b4551;
 $mine-shaft: #333333;
 
 // YELLOW
-$my-sin: #FFBA27;
+$my-sin: #ffba27;
 
 // RED
 $red: #ff0000;
-$valencia: #D54D4D;
+$valencia: #d54d4d;
 
 //ORANGE
 $orange: #ff761a;
 
 // GREEN
-$highland: #699E63;
+$highland: #699e63;
 $citron: #95c11f;
 
 /*****************************************************************************/
@@ -51,13 +51,13 @@ a:link,
 a:visited,
 a:active,
 a:hover {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 // Labels
 label {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 html {
@@ -68,7 +68,7 @@ html {
 body {
   background-color: $spring-wood;
 
-	/* Margin bottom by footer height */
+  /* Margin bottom by footer height */
   margin-bottom: 50px;
   font-family: 'Source Sans Pro', sans-serif;
 
@@ -83,7 +83,7 @@ body {
     padding-top: 148px;
   }
 
-	// Font rendering optimization
+  // Font rendering optimization
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -125,21 +125,21 @@ button {
 // Border radius on .btn
 
 .btn {
-	border-radius: 0;
+  border-radius: 0;
 }
 
 .btn-standard {
-	text-transform: uppercase;
-	background: $my-sin;
-	padding: 10px 20px;
-	font-weight: bold;
-	letter-spacing: 1px;
-	font-size: 16px;
+  text-transform: uppercase;
+  background: $my-sin;
+  padding: 10px 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 16px;
 }
 
 // Transition color effect
 .tr-efx {
-	-webkit-transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
   -ms-transition: 0.3s ease-in-out;
   -o-transition: 0.3s ease-in-out;
@@ -166,9 +166,27 @@ button {
 }
 
 .push-right {
-	float: right;
+  float: right;
 }
 
 .push-left {
-	float: left;
+  float: left;
+}
+
+.img-lazy {
+  background: white url('../img/spinner.gif') no-repeat 50% 50%;
+  color: $white;
+  display: block;
+  // image's height
+  height: 300px;
+}
+
+.img-lazy-error {
+  height: 40vh;
+}
+
+.img-lazy,
+.img-lazy-error {
+  // hides alt text
+  font-size: 0;
 }
