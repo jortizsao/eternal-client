@@ -1,0 +1,8 @@
+fragment CustomerFragment on Customer {
+  id
+  title
+  email
+  firstName
+  lastName
+  customerNumber
+}
