@@ -11,7 +11,7 @@
               <my-account-sidebar></my-account-sidebar>
             </div>
             <div id="my-account-desktop-content" class="col-sm-9">
-              <my-account-personal-details :customer="user"></my-account-personal-details>
+              <my-account-personal-details :customer="customer"></my-account-personal-details>
             </div>
           </div>
         </div>
@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import gql from 'graphql-tag';
 import MyAccountSidebar from './MyAccountSidebar.vue';
 import MyAccountPersonalDetails from './MyAccountPersonalDetails.vue';
 
@@ -30,14 +30,33 @@ export default {
   data() {
     return {
       selectedTab: 'personalDetails',
+      customer: {},
     };
-  },
-  computed: {
-    ...mapState('authentication', ['user']),
   },
   components: {
     MyAccountSidebar,
     MyAccountPersonalDetails,
+  },
+  apollo: {
+    customer() {
+      return {
+        query: gql`
+          query GetCustomer($id: ID!) {
+            customer(id: $id) {
+              title
+              id
+              email
+              firstName
+              lastName
+              customerNumber
+            }
+          }
+        `,
+        variables: {
+          id: this.id,
+        },
+      };
+    },
   },
 };
 </script>
