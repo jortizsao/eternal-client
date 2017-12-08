@@ -105,7 +105,7 @@ export default {
       email: '',
     };
   },
-  mounted() {
+  created() {
     this.setPersonalDetails(this.customer);
   },
   methods: {
@@ -128,6 +128,11 @@ export default {
           console.log('Updating details', this.firstName, this.lastName, this.email);
         }
       });
+    },
+  },
+  watch: {
+    customer() {
+      this.setPersonalDetails(this.customer);
     },
   },
 };
