@@ -1,0 +1,7 @@
+#import "../fragments/CustomerFragment.gql"
+
+query GetCustomer($id: ID!) {
+  customer(id: $id) {
+    ...CustomerFragment
+  }
+}

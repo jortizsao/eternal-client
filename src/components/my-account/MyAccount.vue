@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import gql from 'graphql-tag';
+import GET_CUSTOMER_QUERY from '@/graphql/queries/GetCustomer.gql';
 import MyAccountSidebar from './MyAccountSidebar.vue';
 import MyAccountPersonalDetails from './MyAccountPersonalDetails.vue';
 
@@ -40,18 +40,7 @@ export default {
   apollo: {
     customer() {
       return {
-        query: gql`
-          query GetCustomer($id: ID!) {
-            customer(id: $id) {
-              title
-              id
-              email
-              firstName
-              lastName
-              customerNumber
-            }
-          }
-        `,
+        query: GET_CUSTOMER_QUERY,
         variables: {
           id: this.id,
         },
