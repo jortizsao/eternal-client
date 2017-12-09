@@ -53,11 +53,6 @@
                 <input class="form-inputs" v-validate="'required'" v-model="firstName" name="firstName" type="text">
               </div>
               <p class="text-danger" v-show="errors.has('firstName')">{{ errors.first('firstName') }}</p>
-              <div class="form-sections">
-                <span class="form-labels">{{ $t('personalDetailsForm.email') }}</span><br>
-                <input class="form-inputs" disabled v-model="email" name="email" type="email"><br>
-              </div>
-              <p class="text-danger" v-show="errors.has('email')">{{ errors.first('email') }}</p>
             </div>
             <div class="col-sm-6">
               <div class="form-sections">
@@ -65,6 +60,13 @@
                 <input class="form-inputs" v-validate="'required'" v-model="lastName" name="lastName" type="text">
               </div>
               <p class="text-danger" v-show="errors.has('lastName')">{{ errors.first('lastName') }}</p>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-sections">
+                <span class="form-labels">{{ $t('personalDetailsForm.email') }}</span><br>
+                <input class="form-inputs" disabled v-model="email" name="email" type="email"><br>
+              </div>
+              <p class="text-danger" v-show="errors.has('email')">{{ errors.first('email') }}</p>
             </div>
           </div>
 
