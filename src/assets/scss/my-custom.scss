@@ -2,6 +2,10 @@
 
 $border-grey: #eeeeee;
 
+input:disabled {
+  background: $border-grey;
+}
+
 .location-dropdown__select {
   margin: 10px;
 

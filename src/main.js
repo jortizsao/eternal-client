@@ -12,6 +12,7 @@ import App from './App.vue';
 import Router from './router';
 import I18n from './i18n';
 import storyblok from './plugins/storyblok';
+import myFilters from './filters';
 import Store from './store';
 import Apollo from './apollo';
 import UtilsAuthentication from './utils/authentication/utils.authentication';
@@ -43,6 +44,7 @@ Vue.use(notifications);
 Vue.use(vue2Filters);
 Vue.use(storyblok);
 Vue.use(authentication);
+Vue.use(myFilters);
 
 /* eslint-disable no-new */
 new Vue({
