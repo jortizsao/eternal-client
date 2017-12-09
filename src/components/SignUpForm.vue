@@ -79,7 +79,7 @@
         </div>
         <hr class="signup-box-hr">
         <div class="signup-box-terms">
-          <input v-validate="'required'" type="checkbox" name="agreeToTerms" :value="agreeToTerms">
+          <input v-validate="'required'" type="checkbox" name="agreeToTerms" v-model="agreeToTerms">
           <span>{{ $t('agreeTo') }} <a href="#">{{ $t('termsAndConditions') }} </a></span>
           <p class="text-danger" v-show="errors.has('agreeToTerms')">
             {{ errors.first('agreeToTerms') }}
@@ -106,7 +106,7 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
-      agreeToTerms: '',
+      agreeToTerms: false,
     };
   },
   methods: {
@@ -125,6 +125,7 @@ export default {
             .then(() => {
               this.$Progress.finish();
               this.reset();
+              this.$validator.reset();
               this.$router.push({ name: 'MyAccount', params: { id: this.user.id } });
             })
             .catch(err => {
@@ -142,7 +143,7 @@ export default {
       this.email = '';
       this.password = '';
       this.confirmPassword = '';
-      this.agreeToTerms = '';
+      this.agreeToTerms = false;
     },
     ...mapActions('general', ['SIGN_UP']),
   },

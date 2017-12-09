@@ -8,7 +8,7 @@
         <div class="my-account-content">
           <div class="row">
             <div class="col-sm-3">
-              <my-account-sidebar></my-account-sidebar>
+              <my-account-sidebar @selected-tab="onSelectedTab"></my-account-sidebar>
             </div>
             <div id="my-account-desktop-content" class="col-sm-9">
               <my-account-personal-details :customer="customer"></my-account-personal-details>
@@ -32,6 +32,11 @@ export default {
       selectedTab: 'personalDetails',
       customer: {},
     };
+  },
+  methods: {
+    onSelectedTab(tab) {
+      this.selectedTab = tab;
+    },
   },
   components: {
     MyAccountSidebar,
