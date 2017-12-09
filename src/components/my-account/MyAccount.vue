@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import GET_CUSTOMER_QUERY from '@/graphql/queries/GetCustomer.gql';
+import GET_CUSTOMER_QUERY from '@/graphql/queries/customers/GetCustomer.gql';
 import MyAccountSidebar from './MyAccountSidebar.vue';
 import MyAccountPersonalDetails from './MyAccountPersonalDetails.vue';
 

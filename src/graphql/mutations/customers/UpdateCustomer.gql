@@ -1,0 +1,7 @@
+#import "../../fragments/customers/CustomerFragment.gql"
+
+mutation UpdateCustomer($id: ID!, $customerDraft: CustomerDraft!) {
+  updateCustomer(id: $id, customerDraft: $customerDraft) {
+    ...CustomerFragment
+  }
+}
