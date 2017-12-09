@@ -50,7 +50,7 @@
 
               <li v-if="isUserAuthenticated" class="list-item-user">
                 <router-link class="link-user icon-user" :to="{ name: 'MyAccount', params: { id: user.id } }">
-                  <span class="hidden-xs hidden-sm">{{ user.firstName }}</span>
+                  <span class="hidden-xs hidden-sm">{{ customer.firstName }}</span>
                 </router-link>
               </li>
 
@@ -90,6 +90,7 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 import MiniCart from '@/components/minicart/MiniCart.vue';
+import GET_CUSTOMER_QUERY from '@/graphql/queries/customers/GetCustomer.gql';
 import LocationSelector from './LocationSelector.vue';
 import Logo from './Logo.vue';
 import SearchBar from './SearchBar.vue';
@@ -97,12 +98,18 @@ import NavBar from './NavBar.vue';
 
 export default {
   data() {
-    return {};
+    return {
+      customer: {},
+    };
   },
   methods: {
     signOut() {
       this.SIGN_OUT();
+      this.reset();
       this.$router.push({ name: 'Home' });
+    },
+    reset() {
+      this.customer = {};
     },
     ...mapActions('general', ['SIGN_OUT']),
   },
@@ -110,6 +117,21 @@ export default {
     ...mapState('authentication', ['user']),
     isUserAuthenticated() {
       return this.$authentication.isUserAuthenticated();
+    },
+  },
+  apollo: {
+    customer() {
+      return {
+        query: GET_CUSTOMER_QUERY,
+        variables() {
+          return {
+            id: this.user.id,
+          };
+        },
+        skip() {
+          return !this.isUserAuthenticated;
+        },
+      };
     },
   },
   components: {
