@@ -2,7 +2,7 @@
   <div class="personal-details">
     <div class="personal-details-text-one">
       <span>{{ $t('welcomeBack') }}</span>
-      <span>{{customer.firstName}}</span>
+      <span>{{customer.firstName | capitalizeAll}}</span>
     </div>
     <div class="personal-details-text-two">
       {{ $t('welcomeDescription') }}
@@ -16,9 +16,9 @@
       <div v-show="!isEditing">
         <div class="personal-details-box">
           <div>
-              {{customer.title}}
-              {{customer.firstName}}
-              {{customer.lastName}}
+              {{customer.title | capitalizeAll}}
+              {{customer.firstName | capitalizeAll}}
+              {{customer.lastName | capitalizeAll}}
           </div>
           <div>{{customer.email}}</div><br>
             <div v-show="customer.isSubscribed">{{ $t('subscribedToNewsletter') }}</div>
@@ -54,9 +54,8 @@
               </div>
               <p class="text-danger" v-show="errors.has('firstName')">{{ errors.first('firstName') }}</p>
               <div class="form-sections">
-                <span class="form-labels">{{ $t('personalDetailsForm.email') }}*</span><br>
-                <input class="form-inputs" v-validate="'required|email'" v-model="email" name="email" type="email"><br>
-                <span class="form-notes"></span>
+                <span class="form-labels">{{ $t('personalDetailsForm.email') }}</span><br>
+                <input class="form-inputs" disabled v-model="email" name="email" type="email"><br>
               </div>
               <p class="text-danger" v-show="errors.has('email')">{{ errors.first('email') }}</p>
             </div>
@@ -114,14 +113,15 @@ export default {
     },
     setPersonalDetails({ title, firstName, lastName, email }) {
       this.title = title;
-      this.firstName = firstName;
-      this.lastName = lastName;
+      this.firstName = this.$options.filters.capitalizeAll(firstName);
+      this.lastName = this.$options.filters.capitalizeAll(lastName);
       this.email = email;
     },
     updateDetails() {
       this.$validator.validateAll().then(result => {
         if (result) {
           this.$Progress.start();
+          this.setIsEditing(false);
           this.$apollo
             .mutate({
               mutation: UPDATE_CUSTOMER_MUTATION,
@@ -131,15 +131,24 @@ export default {
                   title: this.title,
                   firstName: this.firstName,
                   lastName: this.lastName,
-                  email: this.email,
+                },
+              },
+              optimisticResponse: {
+                __typename: 'Mutation',
+                updateCustomer: {
+                  __typename: 'Customer',
+                  ...this.customer,
+                  title: this.title,
+                  firstName: this.firstName,
+                  lastName: this.lastName,
                 },
               },
             })
             .then(() => {
-              this.$notify({
-                type: 'success',
-                text: 'Personal details updated',
-              });
+              // this.$notify({
+              //   type: 'success',
+              //   text: 'Personal details updated',
+              // });
               this.$Progress.finish();
             })
             .catch(err => {
