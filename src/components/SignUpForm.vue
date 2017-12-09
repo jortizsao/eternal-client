@@ -124,12 +124,7 @@ export default {
           })
             .then(() => {
               this.$Progress.finish();
-              this.$notify({
-                type: 'success',
-                text: `Welcome <b>${this.$options.filters.capitalize(
-                  this.user.firstName.toLowerCase(),
-                )}</b>!`,
-              });
+              this.reset();
               this.$router.push({ name: 'MyAccount', params: { id: this.user.id } });
             })
             .catch(err => {
@@ -139,6 +134,15 @@ export default {
             });
         }
       });
+    },
+    reset() {
+      this.title = '';
+      this.firstName = '';
+      this.lastName = '';
+      this.email = '';
+      this.password = '';
+      this.confirmPassword = '';
+      this.agreeToTerms = '';
     },
     ...mapActions('general', ['SIGN_UP']),
   },

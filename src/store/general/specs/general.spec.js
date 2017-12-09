@@ -61,7 +61,10 @@ describe('General Store', () => {
           expect(store.state.authentication).toEqual({
             token: customerResponse.token,
             tokenExpiresAt: '1982-02-12T00:00:00.000Z', // new Date(382320000 * 1000).toISOString()
-            user: customerResponse.customer,
+            user: {
+              id: customerResponse.customer.id,
+              email: customerResponse.customer.email,
+            },
           });
         });
       });
@@ -113,7 +116,10 @@ describe('General Store', () => {
           expect(store.state.authentication).toEqual({
             token: customerResponse.token,
             tokenExpiresAt: '1982-02-12T00:00:00.000Z', // new Date(382320000 * 1000).toISOString()
-            user: customerResponse.customer,
+            user: {
+              id: customerResponse.customer.id,
+              email: customerResponse.customer.email,
+            },
           });
         });
       });
