@@ -71,12 +71,6 @@
 
           <hr class="light-grey-hr">
 
-          <div class="personal-details-newsletter">
-            <span>
-              <input name="subscribeToNewsletter" type="checkbox" />
-              {{ $t('personalDetailsForm.subscribeToNewsletter') }}
-            </span>
-          </div>
           <div class="personal-details-edit-btn">
             <span>
               <button type="submit" class="update-btn">{{ $t('updateBtn') }}</button>
@@ -89,6 +83,8 @@
 </template>
 
 <script>
+import UPDATE_CUSTOMER_MUTATION from '@/graphql/mutations/customers/UpdateCustomer.gql';
+
 export default {
   props: {
     customer: {
@@ -125,7 +121,31 @@ export default {
     updateDetails() {
       this.$validator.validateAll().then(result => {
         if (result) {
-          console.log('Updating details', this.firstName, this.lastName, this.email);
+          this.$Progress.start();
+          this.$apollo
+            .mutate({
+              mutation: UPDATE_CUSTOMER_MUTATION,
+              variables: {
+                id: this.customer.id,
+                customerDraft: {
+                  title: this.title,
+                  firstName: this.firstName,
+                  lastName: this.lastName,
+                  email: this.email,
+                },
+              },
+            })
+            .then(() => {
+              this.$notify({
+                type: 'success',
+                text: 'Personal details updated',
+              });
+              this.$Progress.finish();
+            })
+            .catch(err => {
+              this.$notify({ type: 'error', text: `Error updating ${err}` });
+              this.$Progress.finish();
+            });
         }
       });
     },
