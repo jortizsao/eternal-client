@@ -24,7 +24,7 @@ import './assets/scss/my-custom.scss';
 const store = Store();
 const i18n = I18n();
 const apolloProvider = new VueApollo({
-  defaultClient: Apollo(),
+  defaultClient: Apollo({ authentication: store.state.authentication }),
 });
 const utilsAuthentication = UtilsAuthentication();
 const authentication = Authentication({

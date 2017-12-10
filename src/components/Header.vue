@@ -131,6 +131,9 @@ export default {
         skip() {
           return !this.isUserAuthenticated;
         },
+        error(err) {
+          this.$notify({ type: 'error', text: `Error getting customer: ${err}` });
+        },
       };
     },
   },
