@@ -49,6 +49,9 @@ export default {
         variables: {
           id: this.id,
         },
+        error(err) {
+          this.$notify({ type: 'error', text: `Error getting customer: ${err}` });
+        },
       };
     },
   },
