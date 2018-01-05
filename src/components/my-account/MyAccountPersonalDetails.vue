@@ -147,10 +147,6 @@ export default {
               },
             })
             .then(() => {
-              // this.$notify({
-              //   type: 'success',
-              //   text: 'Personal details updated',
-              // });
               this.$Progress.finish();
             })
             .catch(err => {

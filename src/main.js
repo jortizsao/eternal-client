@@ -12,6 +12,7 @@ import App from './App.vue';
 import Router from './router';
 import I18n from './i18n';
 import storyblok from './plugins/storyblok';
+import myCommons from './plugins/commons';
 import myFilters from './filters';
 import Store from './store';
 import Apollo from './apollo';
@@ -45,6 +46,7 @@ Vue.use(vue2Filters);
 Vue.use(storyblok);
 Vue.use(authentication);
 Vue.use(myFilters);
+Vue.use(myCommons);
 
 /* eslint-disable no-new */
 new Vue({
