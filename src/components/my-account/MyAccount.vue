@@ -11,7 +11,8 @@
               <my-account-sidebar @selected-tab="onSelectedTab"></my-account-sidebar>
             </div>
             <div id="my-account-desktop-content" class="col-sm-9">
-              <my-account-personal-details :customer="customer"></my-account-personal-details>
+              <my-account-personal-details :customer="customer" v-show="selectedTab==='personalDetails'"></my-account-personal-details>
+              <my-account-change-password :customer="customer" v-show="selectedTab==='changePassword'"></my-account-change-password>
             </div>
           </div>
         </div>
@@ -23,6 +24,7 @@
 import GET_CUSTOMER_QUERY from '@/graphql/queries/customers/GetCustomer.gql';
 import MyAccountSidebar from './MyAccountSidebar.vue';
 import MyAccountPersonalDetails from './MyAccountPersonalDetails.vue';
+import MyAccountChangePassword from './MyAccountChangePassword.vue';
 
 export default {
   name: 'myAccount',
@@ -41,6 +43,7 @@ export default {
   components: {
     MyAccountSidebar,
     MyAccountPersonalDetails,
+    MyAccountChangePassword,
   },
   apollo: {
     customer() {

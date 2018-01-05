@@ -4,4 +4,6 @@ export default {
   confirmPassword: 'confirm password',
   signUpPassword: 'password',
   agreeToTerms: 'agree terms and conditions',
+  currentPassword: 'current password',
+  newPassword: 'new password',
 };

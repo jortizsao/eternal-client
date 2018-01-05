@@ -1,19 +1,19 @@
 <template>
-  <transition name="appFade">
+  <!-- <transition name="appFade"> -->
     <div id="app" v-show="isShown">
       <div class="darkbg hidden"></div>
       <header-component></header-component>
       <div :class="containerClass">
-        <transition :name="transition">
+        <!-- <transition :name="transition"> -->
           <keep-alive include="home">
             <router-view></router-view>
           </keep-alive>
-        </transition>
+        <!-- </transition> -->
       </div>
       <vue-progress-bar></vue-progress-bar>
       <custom-notifications></custom-notifications>
     </div>
-  </transition>
+  <!-- </transition> -->
 </template>
 
 <script>
