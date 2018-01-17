@@ -37,9 +37,6 @@
     &:last-child {
       border-bottom: 1px solid $alto;
     }
-    &:hover {
-      background: $wild-sand;
-    }
   }
   .active {
     background: $wild-sand;
@@ -131,7 +128,7 @@
     font-size: 12px;
     img {
       height: 12px;
-      margin: 0 5px 5px 0;;
+      margin: 0 5px 5px 0;
     }
   }
 }
@@ -148,15 +145,15 @@
   font-size: 14px;
 }
 .select-input {
-  background: url("../img/arrow-67-filled.png") no-repeat 90% 50% $white;
+  background: url('../img/arrow-67-filled.png') no-repeat 90% 50% $white;
   background-size: 12px;
   border: 1px solid $alto;
   border-radius: 1px;
   padding: 0.5em 3em 0.5em 0.5em;
   margin-top: 0.2em;
   -webkit-appearance: none;
-  -moz-appearance:    none;
-  appearance:         none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .form-labels {
   text-transform: uppercase;
@@ -164,13 +161,13 @@
 }
 .form-inputs {
   width: 100%;
-  border: 1px solid #D6D6D6;
+  border: 1px solid #d6d6d6;
   border-radius: 1px;
   padding: 0.5em;
   margin-top: 0.2em;
 }
 .form-sections {
-  padding-top: 15px;;
+  padding-top: 15px;
 }
 .form-notes {
   font-size: 12px;

@@ -1,53 +1,51 @@
 <template>
-  <div id="my-account-change-password">
-    <div class="change-password">
-      <div class="change-password-wrapper">
-        <div class="personal-details-title">
-          <span>{{ $t('changePasswordTitle') }}</span>
-          <span class="pull-right required-text">{{ $t('required') }}*</span>
-        </div>
-        <form id="form-change-password" @submit.prevent="changePassword" method="post" action="/changePassword">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-sections">
-                <span class="form-labels">{{ $t('currentPasswordLabelTxt') }}*</span><br>
-                <input name="currentPassword" v-validate="'required'" v-model="currentPassword" class="form-inputs" type="password">
-                <p class="text-danger" v-show="errors.has('currentPassword')">
-                  {{ errors.first('currentPassword') }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="form-sections">
-                <span class="form-labels">{{ $t('newPasswordLabelTxt') }}*</span><br>
-                <input name="newPassword" v-validate="'required'" v-model="newPassword" class="form-inputs" type="password">
-                <p class="text-danger" v-show="errors.has('newPassword')">
-                  {{ errors.first('newPassword') }}
-                </p>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-sections">
-                <span class="form-labels">{{ $t('confirmPasswordLabelTxt') }}*</span><br>
-                <input name="confirmPassword" v-validate="'required|confirmed:newPassword'" v-model="confirmPassword" class="form-inputs" type="password">
-                <p class="text-danger" v-show="errors.has('confirmPassword')">
-                  {{ errors.first('confirmPassword') }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <hr class="light-grey-hr">
-          <div class="personal-details-edit-btn">
-            <span>
-              <button type="submit" class="update-btn password-change-btn">
-                {{ $t('changeBtn') }}
-              </button>
-            </span>
-          </div>
-        </form>
+  <div id="my-account-change-password" class="change-password">
+    <div class="change-password-wrapper">
+      <div class="personal-details-title">
+        <span>{{ $t('changePasswordTitle') }}</span>
+        <span class="pull-right required-text">{{ $t('required') }}*</span>
       </div>
+      <form id="form-change-password" @submit.prevent="changePassword" method="post" action="/changePassword">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-sections">
+              <span class="form-labels">{{ $t('currentPasswordLabelTxt') }}*</span><br>
+              <input name="currentPassword" v-validate="'required'" v-model="currentPassword" class="form-inputs" type="password">
+              <p class="text-danger" v-show="errors.has('currentPassword')">
+                {{ errors.first('currentPassword') }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-sections">
+              <span class="form-labels">{{ $t('newPasswordLabelTxt') }}*</span><br>
+              <input name="newPassword" v-validate="'required'" v-model="newPassword" class="form-inputs" type="password">
+              <p class="text-danger" v-show="errors.has('newPassword')">
+                {{ errors.first('newPassword') }}
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-sections">
+              <span class="form-labels">{{ $t('confirmPasswordLabelTxt') }}*</span><br>
+              <input name="confirmPassword" v-validate="'required|confirmed:newPassword'" v-model="confirmPassword" class="form-inputs" type="password">
+              <p class="text-danger" v-show="errors.has('confirmPassword')">
+                {{ errors.first('confirmPassword') }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr class="light-grey-hr">
+        <div class="personal-details-edit-btn">
+          <span>
+            <button type="submit" class="update-btn password-change-btn">
+              {{ $t('changeBtn') }}
+            </button>
+          </span>
+        </div>
+      </form>
     </div>
   </div>
 </template>

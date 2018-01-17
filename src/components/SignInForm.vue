@@ -66,7 +66,7 @@ export default {
             .then(() => {
               this.$Progress.finish();
               this.$router.push({
-                name: 'MyAccount',
+                name: 'MyAccountPersonalDetails',
                 params: { id: this.user.id },
               });
             })

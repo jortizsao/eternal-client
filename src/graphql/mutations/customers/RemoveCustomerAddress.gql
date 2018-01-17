@@ -1,0 +1,7 @@
+#import "../../fragments/customers/CustomerFragment.gql"
+
+mutation RemoveCustomerAddress($id: ID!, $addressId: ID!) {
+  removeCustomerAddress(id: $id, addressId: $addressId) {
+    ...CustomerFragment
+  }
+}

@@ -1,0 +1,7 @@
+#import "../../fragments/customers/CustomerFragment.gql"
+
+mutation SaveCustomerAddress($id: ID!, $addressDraft: AddressDraft!) {
+  saveCustomerAddress(id: $id, addressDraft: $addressDraft) {
+    ...CustomerFragment
+  }
+}

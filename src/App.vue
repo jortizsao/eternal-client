@@ -1,5 +1,5 @@
 <template>
-  <!-- <transition name="appFade"> -->
+  <transition name="appFade">
     <div id="app" v-show="isShown">
       <div class="darkbg hidden"></div>
       <header-component></header-component>
@@ -13,7 +13,7 @@
       <vue-progress-bar></vue-progress-bar>
       <custom-notifications></custom-notifications>
     </div>
-  <!-- </transition> -->
+  </transition>
 </template>
 
 <script>
@@ -83,11 +83,13 @@ $bootstrap-sass-asset-helper: true;
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
 
-.slideLeft-leave-active, .slideRight-leave-active {
+.slideLeft-leave-active,
+.slideRight-leave-active {
   display: none;
 }
 
-.slideLeft-enter-active, .slideRight-enter-active {
+.slideLeft-enter-active,
+.slideRight-enter-active {
   transition: 0.1s;
 }
 
@@ -99,10 +101,12 @@ $bootstrap-sass-asset-helper: true;
   transform: translate(-100%, 0);
 }
 
-.appFade-enter-active, .appFade-leave-active {
-  transition: opacity 0.5s
+.appFade-enter-active,
+.appFade-leave-active {
+  transition: opacity 0.5s;
 }
-.appFade-enter, .appFade-leave-to {
+.appFade-enter,
+.appFade-leave-to {
   opacity: 0.1;
 }
 </style>

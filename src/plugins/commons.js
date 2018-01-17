@@ -6,6 +6,18 @@ const myCommons = {
       ? graphqlError.networkError.message
       : graphqlError.graphQLErrors[0].message;
   },
+  addOrUpdateArray(array, item) {
+    const index = array.findIndex(c => c.id === item.id);
+
+    if (index >= 0) {
+      return [...array.slice(0, index), item, ...array.slice(index + 1)];
+    }
+
+    return [...array, item];
+  },
+  removeFromArray(array, item) {
+    return array.filter(it => it.id !== item.id);
+  },
 };
 
 export default {
