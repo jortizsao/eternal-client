@@ -39,7 +39,7 @@
         <span class="sidebar-wishlist-quantity hidden-sm">{{wishlistItems}}</span>
       </div>
     </a> -->
-    <a href="">
+    <a @click.prevent="signOut()" href="" class="link-user">
       <div class="my-account-sidebar-items">
         {{ $t('signOut') }}
       </div>
@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   props: ['selectedTab'],
   data() {
@@ -59,6 +61,11 @@ export default {
     selectTab(tab) {
       this.$emit('selected-tab', tab);
     },
+    signOut() {
+      this.SIGN_OUT();
+      this.$router.push({ name: 'Home' });
+    },
+    ...mapActions('general', ['SIGN_OUT']),
   },
 };
 </script>
