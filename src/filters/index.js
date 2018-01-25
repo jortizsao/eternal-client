@@ -1,7 +1,7 @@
 export default {
   capitalizeAll(string) {
     if (string && typeof string === 'string') {
-      return string.replace(/\b\w/g, l => l.toUpperCase());
+      return string.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
     }
   },
 
