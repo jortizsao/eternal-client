@@ -6,6 +6,11 @@ input:disabled {
   background: $border-grey;
 }
 
+.el-input__inner {
+  border: 1px solid #d6d6d6;
+  border-radius: 0;
+}
+
 .location-dropdown__select {
   margin: 10px;
 
@@ -189,4 +194,10 @@ input:disabled {
 
 .my-account-sidebar .my-account-sidebar-items:last-child {
   border-bottom: none;
+}
+
+.address-book-dark-box-title-no-padding {
+  color: $mine-shaft;
+  font-size: 14px;
+  text-transform: uppercase;
 }

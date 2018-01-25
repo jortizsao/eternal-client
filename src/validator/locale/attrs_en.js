@@ -6,4 +6,6 @@ export default {
   agreeToTerms: 'agree terms and conditions',
   currentPassword: 'current password',
   newPassword: 'new password',
+  postalCode: 'postal code',
+  streetName: 'street name',
 };

@@ -49,7 +49,7 @@
               </li>
 
               <li v-if="isUserAuthenticated" class="list-item-user">
-                <router-link class="link-user icon-user" :to="{ name: 'MyAccount', params: { id: user.id } }">
+                <router-link class="link-user icon-user" :to="{ name: 'MyAccountPersonalDetails', params: { id: user.id } }">
                   <span class="hidden-xs hidden-sm">{{ customer.firstName }}</span>
                 </router-link>
               </li>

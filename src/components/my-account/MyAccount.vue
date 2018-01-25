@@ -8,11 +8,10 @@
         <div class="my-account-content">
           <div class="row">
             <div class="col-sm-3">
-              <my-account-sidebar @selected-tab="onSelectedTab"></my-account-sidebar>
+              <my-account-sidebar @selected-tab="onSelectedTab" :selectedTab="selectedTab"></my-account-sidebar>
             </div>
             <div id="my-account-desktop-content" class="col-sm-9">
-              <my-account-personal-details :customer="customer" v-show="selectedTab==='personalDetails'"></my-account-personal-details>
-              <my-account-change-password :customer="customer" v-show="selectedTab==='changePassword'"></my-account-change-password>
+              <router-view :customer="customer"></router-view>
             </div>
           </div>
         </div>
@@ -23,27 +22,34 @@
 <script>
 import GET_CUSTOMER_QUERY from '@/graphql/queries/customers/GetCustomer.gql';
 import MyAccountSidebar from './MyAccountSidebar.vue';
-import MyAccountPersonalDetails from './MyAccountPersonalDetails.vue';
-import MyAccountChangePassword from './MyAccountChangePassword.vue';
 
 export default {
   name: 'myAccount',
   props: ['id'],
   data() {
     return {
-      selectedTab: 'personalDetails',
       customer: {},
     };
   },
   methods: {
     onSelectedTab(tab) {
-      this.selectedTab = tab;
+      switch (tab) {
+        case 'changePassword':
+          return this.$router.push({ name: 'MyAccountChangePassword' });
+        case 'addressBook':
+          return this.$router.push({ name: 'MyAccountAddressBookList' });
+        default:
+          this.$router.push({ name: 'MyAccountPersonalDetails' });
+      }
+    },
+  },
+  computed: {
+    selectedTab() {
+      return this.$route.meta.tab;
     },
   },
   components: {
     MyAccountSidebar,
-    MyAccountPersonalDetails,
-    MyAccountChangePassword,
   },
   apollo: {
     customer() {
