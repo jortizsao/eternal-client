@@ -1,10 +1,10 @@
 <template>
   <div id="my-account-address">
-    <div>{{address.title}} {{address.firstName}} {{address.lastName}}</div>
-    <div>{{address.streetName}}</div>
-    <div>{{address.additionalStreetInfo}}</div>
-    <div>{{address.city}}</div>
-    <div>{{address.postalCode}} {{address.region}}</div>
+    <div>{{address.title | capitalizeAll}} {{address.firstName | capitalizeAll}} {{address.lastName | capitalizeAll}}</div>
+    <div>{{address.streetName | capitalizeAll}}</div>
+    <div>{{address.additionalStreetInfo | capitalizeAll}}</div>
+    <div>{{address.city | capitalizeAll}}</div>
+    <div>{{address.postalCode}} {{address.region | capitalizeAll}}</div>
     <div>{{address.country}}</div>
     <div class="address-book-edit-delete">
       <div>
