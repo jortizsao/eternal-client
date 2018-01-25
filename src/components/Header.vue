@@ -105,11 +105,7 @@ export default {
   methods: {
     signOut() {
       this.SIGN_OUT();
-      this.reset();
       this.$router.push({ name: 'Home' });
-    },
-    reset() {
-      this.customer = {};
     },
     ...mapActions('general', ['SIGN_OUT']),
   },
