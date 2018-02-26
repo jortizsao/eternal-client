@@ -42,19 +42,19 @@
                 <mini-cart></mini-cart>
               </li>
 
-              <li v-if="isUserAuthenticated" class="list-item-user">
+              <li v-if="isUserAuthenticated" class="list-item-user btn-animated">
                 <a @click.prevent="signOut()" href="" class="link-user">
                   <span>{{ $t('signOut') }}</span>
                 </a>
               </li>
 
-              <li v-if="isUserAuthenticated" class="list-item-user">
+              <li v-if="isUserAuthenticated" class="list-item-user btn-animated hidden-xs hidden-sm">
                 <router-link class="link-user icon-user" :to="{ name: 'MyAccountPersonalDetails', params: { id: user.id } }">
                   <span class="hidden-xs hidden-sm">{{ customer.firstName }}</span>
                 </router-link>
               </li>
 
-              <li v-else class="list-item-user">
+              <li v-else class="list-item-user btn-animated">
                 <router-link class="link-user icon-user" :to="{ name: 'SignIn' }">
                   <span class="hidden-xs hidden-sm">{{ $t('signIn') }}</span>
                 </router-link>

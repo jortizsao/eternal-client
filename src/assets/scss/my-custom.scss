@@ -1,4 +1,5 @@
 @import './_general';
+@import './animations';
 
 $border-grey: #eeeeee;
 
@@ -41,11 +42,6 @@ input:disabled {
   }
 }
 .nav-list {
-  > li:active {
-    position: relative;
-    top: 1px;
-  }
-
   .list-item-location {
     .location-dropdown {
       display: block;
@@ -178,9 +174,11 @@ input:disabled {
     background: rgba(0, 0, 0, 0);
   }
 }
-.logo:active {
-  position: relative;
-  top: 1px;
+button,
+.btn-animated {
+  &:active {
+    transform: translateY(2px);
+  }
 }
 .sidebar-wishlist-quantity {
   width: 20px;
@@ -200,4 +198,16 @@ input:disabled {
   color: $mine-shaft;
   font-size: 14px;
   text-transform: uppercase;
+}
+
+.add-new-address-btn {
+  button {
+    @media screen and (max-width: 767px) {
+      margin-top: 0px;
+    }
+  }
+}
+
+.cancel-editting-address-btn {
+  padding: 8px 20px;
 }
