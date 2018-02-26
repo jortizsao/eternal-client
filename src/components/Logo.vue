@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="logo">
+  <div class="logo btn-animated">
     <router-link class="brand-logo" :to="{ name: 'Home' }">
       <img class="img-responsive" src="../assets/img/logo.svg" alt="SUNRISE">
     </router-link>

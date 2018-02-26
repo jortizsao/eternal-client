@@ -5,15 +5,17 @@
         <div class="box-addresses-title">
           {{ $t('defaultAddresses') }}
         </div>
-        <div v-if="defaultShippingAddress" class="address-book-dark-box">
-          <div :class="isDefaultBillingAndShipping ? 'address-book-dark-box-title-no-padding' : 'address-book-dark-box-title'">{{ $t('shippingAddress') }}</div>
-          <div v-if="isDefaultBillingAndShipping" class="address-book-dark-box-title">{{ $t('billingAddress') }}</div>
-          <my-account-address :address="defaultShippingAddress" @editAddress="onEditAddress" @deleteAddress="onDeleteAddress"></my-account-address>
-        </div>
-        <div v-if="defaultBillingAddress && !isDefaultBillingAndShipping" class="address-book-dark-box">
-          <div class="address-book-dark-box-title">{{ $t('billingAddress') }}</div>
-          <my-account-address :address="defaultBillingAddress" @editAddress="onEditAddress" @deleteAddress="onDeleteAddress"></my-account-address>
-        </div>
+        <transition-group name="default-address">
+          <div v-if="defaultShippingAddress" :key="getAddressKey(defaultShippingAddress)" class="address-book-dark-box">
+            <div :class="isDefaultBillingAndShipping ? 'address-book-dark-box-title-no-padding' : 'address-book-dark-box-title'">{{ $t('shippingAddress') }}</div>
+            <div v-if="isDefaultBillingAndShipping" class="address-book-dark-box-title">{{ $t('billingAddress') }}</div>
+            <my-account-address :address="defaultShippingAddress" @editAddress="onEditAddress" @deleteAddress="onDeleteAddress"></my-account-address>
+          </div>
+          <div v-if="defaultBillingAddress && !isDefaultBillingAndShipping" :key="getAddressKey(defaultBillingAddress)" class="address-book-dark-box">
+            <div class="address-book-dark-box-title">{{ $t('billingAddress') }}</div>
+            <my-account-address :address="defaultBillingAddress" @editAddress="onEditAddress" @deleteAddress="onDeleteAddress"></my-account-address>
+          </div>
+        </transition-group>
         <div class="row">
           <div class="col-sm-12">
             <div class="add-new-address-btn">
@@ -28,9 +30,11 @@
         <div class="box-addresses-title">
           {{ $t('additionalAddresses') }}
         </div>
-        <div v-for="additionalAddress in additionalAddresses" class="address-book-white-box">
-          <my-account-address :address="additionalAddress" @editAddress="onEditAddress" @deleteAddress="onDeleteAddress"></my-account-address>
-        </div>
+        <transition-group name="address-list" tag="div">
+          <div v-for="additionalAddress in additionalAddresses" :key="getAddressKey(additionalAddress)" class="address-book-white-box">
+            <my-account-address :address="additionalAddress" @editAddress="onEditAddress" @deleteAddress="onDeleteAddress"></my-account-address>
+          </div>
+        </transition-group>
       </div>
     </div>
   </div>
@@ -97,6 +101,9 @@ export default {
           this.$notify({ type: 'error', text: `Error removing address ${err}` });
         });
     },
+    getAddressKey(address) {
+      return address.key || address.id;
+    },
   },
   computed: {
     additionalAddresses() {
@@ -128,6 +135,21 @@ export default {
   },
 };
 </script>
+<style>
+.address-list-leave-active {
+  animation: bounceOutRight 0.5s;
+}
+
+.default-address-enter-active,
+.address-list-enter-active {
+  animation: bounceInUp 0.3s;
+}
+
+.default-address-leave-active {
+  animation: bounceOutLeft 0.5s;
+}
+</style>
+
 <i18n>
 en:
   defaultAddresses: Default Addresses

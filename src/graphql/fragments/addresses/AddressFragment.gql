@@ -1,5 +1,6 @@
 fragment AddressFragment on Address {
   id
+  key
   title
   firstName
   lastName

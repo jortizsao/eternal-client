@@ -70,7 +70,7 @@
         <div class="col-sm-12">
           <div class="edit-address-book-footer">
             <a href="" @click.prevent="cancel">
-              <div class="btn-grey push-left">
+              <div class="btn-grey push-left cancel-editting-address-btn">
                 {{$t('cancelAddressButton')}}
               </div>
             </a>
@@ -84,6 +84,8 @@
   </div>
 </template>
 <script>
+import Vue from 'vue';
+import uuidv4 from 'uuid/v4';
 import FormInput from '@/components/commons/FormInput.vue';
 import SAVE_CUSTOMER_ADDRESS_MUTATION from '@/graphql/mutations/customers/SaveCustomerAddress.gql';
 
@@ -149,6 +151,7 @@ export default {
     getAddressDraft() {
       return {
         id: this.addressId,
+        key: this.address.key || uuidv4(),
         title: this.address.title,
         firstName: this.address.firstName,
         lastName: this.address.lastName,
@@ -189,46 +192,48 @@ export default {
             __typename: 'Address',
           };
 
-          this.$apollo
-            .mutate({
-              mutation: SAVE_CUSTOMER_ADDRESS_MUTATION,
-              variables: {
-                id: this.customer.id,
-                addressDraft,
-              },
-              optimisticResponse: {
-                __typename: 'Mutation',
-                saveCustomerAddress: {
-                  __typename: 'Customer',
-                  ...this.customer,
-                  addresses: this.$myCommons.addOrUpdateArray(
-                    this.customer.addresses,
-                    addressDraftOptimisticUpdate,
-                  ),
-                  defaultShippingAddress: this.getOptimisticDefaultAddress(
-                    this.customer.defaultShippingAddress,
-                    addressDraftOptimisticUpdate,
-                    addressDraftOptimisticUpdate.isDefaultShipping,
-                  ),
-                  defaultBillingAddress: this.getOptimisticDefaultAddress(
-                    this.customer.defaultBillingAddress,
-                    addressDraftOptimisticUpdate,
-                    addressDraftOptimisticUpdate.isDefaultBilling,
-                  ),
-                },
-              },
-            })
-            .catch(err => {
-              this.$notify({ type: 'error', text: `Error saving address ${err}` });
-              this.$router.push({
-                name: 'MyAccountAddressBookEdit',
-                params: { id: this.customer.id, addressId: this.addressId },
-              });
-            });
-
           this.$router.push({
             name: 'MyAccountAddressBookList',
             params: { id: this.customer.id },
+          });
+
+          Vue.nextTick(() => {
+            this.$apollo
+              .mutate({
+                mutation: SAVE_CUSTOMER_ADDRESS_MUTATION,
+                variables: {
+                  id: this.customer.id,
+                  addressDraft,
+                },
+                optimisticResponse: {
+                  __typename: 'Mutation',
+                  saveCustomerAddress: {
+                    __typename: 'Customer',
+                    ...this.customer,
+                    addresses: this.$myCommons.addOrUpdateArray(
+                      this.customer.addresses,
+                      addressDraftOptimisticUpdate,
+                    ),
+                    defaultShippingAddress: this.getOptimisticDefaultAddress(
+                      this.customer.defaultShippingAddress,
+                      addressDraftOptimisticUpdate,
+                      addressDraftOptimisticUpdate.isDefaultShipping,
+                    ),
+                    defaultBillingAddress: this.getOptimisticDefaultAddress(
+                      this.customer.defaultBillingAddress,
+                      addressDraftOptimisticUpdate,
+                      addressDraftOptimisticUpdate.isDefaultBilling,
+                    ),
+                  },
+                },
+              })
+              .catch(err => {
+                this.$notify({ type: 'error', text: `Error saving address ${err}` });
+                this.$router.push({
+                  name: 'MyAccountAddressBookEdit',
+                  params: { id: this.customer.id, addressId: this.addressId },
+                });
+              });
           });
         }
       });

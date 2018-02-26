@@ -90,7 +90,7 @@ export default function ({ authentication }) {
         beforeEnter: (to, from, next) => {
           if (authentication.isUserAuthenticated()) {
             next({
-              name: 'MyAccount',
+              name: 'MyAccountPersonalDetails',
               params: { id: authentication.getUser().id },
             });
           } else {
