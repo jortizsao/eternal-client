@@ -79,10 +79,10 @@
           <search-bar></search-bar>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <nav-bar></nav-bar>
+      <div class="row">
+        <nav-bar></nav-bar>
+      </div>
     </div>
   </div>
 </template>

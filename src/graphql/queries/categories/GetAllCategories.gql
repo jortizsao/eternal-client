@@ -1,0 +1,15 @@
+#import "../../fragments/categories/CategoryFragment.gql"
+
+query GetAllCategories {
+  categories(where: "parent is not defined") {
+    results {
+      ...CategoryFragment
+      children {
+        ...CategoryFragment
+        children {
+          ...CategoryFragment
+        }
+      }
+    }
+  }
+}

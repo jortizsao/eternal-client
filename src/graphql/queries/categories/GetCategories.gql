@@ -1,0 +1,9 @@
+#import "../../fragments/categories/CategoryFragment.gql"
+
+query GetCategories($where: String!) {
+  categories(where: $where, limit: 500) {
+    results {
+      ...CategoryFragment
+    }
+  }
+}

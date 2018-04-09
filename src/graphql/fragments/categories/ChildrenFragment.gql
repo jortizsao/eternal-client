@@ -1,0 +1,8 @@
+#import "./CategoryFragment.gql"
+
+fragment ChildrenFragment on Category {
+  ...CategoryFragment
+  children {
+    ...CategoryFragment
+  }
+}
