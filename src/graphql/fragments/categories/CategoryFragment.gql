@@ -1,0 +1,8 @@
+fragment CategoryFragment on Category {
+  id
+  parent {
+    id
+  }
+  name(locale: "en")
+  slug(locale: "en")
+}

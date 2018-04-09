@@ -1,0 +1,9 @@
+#import "../../fragments/categories/ChildrenFragment.gql"
+
+query GetMainCategories {
+  categories(where: "parent is not defined") {
+    results {
+      ...ChildrenFragment
+    }
+  }
+}

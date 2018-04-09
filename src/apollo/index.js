@@ -14,7 +14,7 @@ export default function ({ authentication }) {
     return {
       headers: {
         ...headers,
-        authorization: authentication.token ? `Bearer ${authentication.token}` : null,
+        ...(authentication.token && { Authorization: `Bearer ${authentication.token}` }),
       },
     };
   });
