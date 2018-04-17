@@ -2,14 +2,16 @@
   <transition name="appFade">
     <div id="app" v-show="isShown">
       <div class="darkbg hidden"></div>
-      <header-component></header-component>
-      <div :class="containerClass">
-        <!-- <transition :name="transition"> -->
-          <keep-alive include="home">
-            <router-view></router-view>
-          </keep-alive>
-        <!-- </transition> -->
-      </div>
+      <Slideout menu="#menu" panel="#panel" :toggleSelectors="['.navbar-toggle']">
+        <header-component></header-component>
+        <div id="panel" :class="containerClass">
+          <!-- <transition :name="transition"> -->
+            <keep-alive include="home">
+              <router-view></router-view>
+            </keep-alive>
+          <!-- </transition> -->
+        </div>
+      </Slideout>
       <vue-progress-bar></vue-progress-bar>
       <custom-notifications></custom-notifications>
     </div>
@@ -17,9 +19,10 @@
 </template>
 
 <script>
+import Slideout from 'vue-slideout';
 import { mapState } from 'vuex';
 import CustomNotifications from '@/notifications/CustomNotifications.vue';
-import HeaderComponent from './components/Header.vue';
+import HeaderComponent from './components/header/Header.vue';
 
 export default {
   name: 'app',
@@ -74,6 +77,7 @@ export default {
   components: {
     HeaderComponent,
     CustomNotifications,
+    Slideout,
   },
 };
 </script>

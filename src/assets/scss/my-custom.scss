@@ -211,3 +211,77 @@ button,
 .cancel-editting-address-btn {
   padding: 8px 20px;
 }
+
+@media screen and (max-width: 767px) {
+  body {
+    padding-top: 50px;
+  }
+
+  .slideout-menu {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    width: 256px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 0;
+    display: none;
+    background-color: #2a343f;
+    color: white;
+  }
+
+  .navbar-default {
+    .navbar-nav {
+      li {
+        list-style: none;
+      }
+
+      > li {
+        > a,
+        > a:hover,
+        > a:focus {
+          color: white;
+          padding: 20px 15px;
+          font-size: 18px;
+          text-transform: uppercase;
+
+          .sale {
+            color: #d54d4d;
+          }
+        }
+      }
+    }
+  }
+
+  .slideout-menu-left {
+    left: 0;
+  }
+
+  .slideout-menu-right {
+    right: 0;
+  }
+
+  .slideout-panel {
+    color: white;
+    position: relative;
+    z-index: 9999;
+    will-change: transform;
+    min-height: 100vh;
+  }
+
+  .slideout-open,
+  .slideout-open body,
+  .slideout-open .slideout-panel {
+    overflow: hidden;
+  }
+
+  .slideout-open .slideout-menu {
+    display: block;
+  }
+
+  .mobile-plus-content {
+    color: white;
+    opacity: 1;
+    font-weight: bold;
+  }
+}

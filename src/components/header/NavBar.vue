@@ -1,22 +1,50 @@
 <template lang="html">
   <div class="dropdown-megamenu navbar navbar-default">
-    <div class="navbar-collapse collapse">
+    <div id="menu">
       <ul class="nav navbar-nav">
         <li class="dropdown menu-large" v-for="rootCategory in categories.results">
-          <a href="#" class="dropdown-toggle" :class="[isSale(rootCategory) ? 'sale icon-ribbon' : '']" data-toggle="dropdown">
+          <a :href="getCategoryLink(rootCategory)" class="dropdown-toggle" :class="[isSale(rootCategory) ? 'sale icon-ribbon' : '']" data-toggle="dropdown">
             {{rootCategory.name}}
-            <!-- <img class="mobile-plus-content visible-xs" src="{{@root.meta.assetsPath}}img/plus79.png" alt="{{i18n "main:more"}}"> -->
+            <template v-if="rootCategory.children.length">
+              <a href="#" v-show="!rootCategory.isExpanded" @click.prevent="expand(rootCategory)">
+                <span class="glyphicon glyphicon-plus mobile-plus-content visible-xs" aria-hidden="true"></span>
+              </a>
+              <a href="#" v-show="rootCategory.isExpanded" @click.prevent="collapse(rootCategory)">
+                <span class="glyphicon glyphicon-minus mobile-plus-content visible-xs" aria-hidden="true"></span>
+              </a>
+            </template>
           </a>
-          <!-- {{> common/nav-menu-category category=this}} -->
+          <ul v-if="rootCategory.children.length" class="dropdown-menu megamenu row dropdown-submenu hidden-xs">
+            <li class="col-sm-8">
+              <div class="nav-accordion">
+                <template v-for="firstChild in rootCategory.children">
+                  <h3><a :href="getCategoryLink(firstChild)">{{firstChild.name}}</a></h3>
+                  <ul>
+                    <li v-for="secondChild in firstChild.children">
+                      <a :href="getCategoryLink(secondChild)">{{secondChild.name}}</a>
+                    </li>
+                  </ul>
+                </template>
+              </div>
+            </li>
+          </ul>
+
+          <ul v-if="rootCategory.children && rootCategory.isExpanded" class="visible-xs">
+            <li class="col-sm-8">
+              <div class="nav-accordion">
+                <template v-for="firstChild in rootCategory.children">
+                  <h3><a :href="getCategoryLink(firstChild)">{{firstChild.name}}</a></h3>
+                  <ul>
+                    <li v-for="secondChild in firstChild.children">
+                      <a :href="getCategoryLink(secondChild)">{{secondChild.name}}</a>
+                    </li>
+                  </ul>
+                </template>
+              </div>
+            </li>
+          </ul>
         </li>
-        <!-- {{> common/nav-menu navMenu=header.navMenu}}
-        {{#if header.location}}
-        <li class="visible-xs location-xs">
-          {{> common/location-selector-mobile location=header.location}}
-        </li>
-        {{/if}} -->
       </ul>
-      <!-- {{> common/nav-menu-extension navMenu=header.navMenu}} -->
     </div>
   </div>
 </template>
@@ -27,6 +55,7 @@ import GET_CATEGORIES_QUERY from '@/graphql/queries/categories/GetCategories.gql
 import GET_ALL_CATEGORIES_QUERY from '@/graphql/queries/categories/GetAllCategories.gql';
 import CHILDREN_FRAGMENT from '@/graphql/fragments/categories/ChildrenFragment.gql';
 import CATEGORY_FRAGMENT from '@/graphql/fragments/categories/CategoryFragment.gql';
+import SET_IS_EXPANDED_FRAGMENT from '@/graphql/fragments/categories/SetIsExpandedFragment.gql';
 
 export default {
   data() {
@@ -94,6 +123,31 @@ export default {
   methods: {
     isSale(category) {
       return category.name.toLowerCase() === 'sale';
+    },
+    getCategoryLink(category) {
+      return `categories/${category.slug}`;
+    },
+    expand(category) {
+      this.$apollo.provider.defaultClient.writeFragment({
+        id: `Category:${category.id}`,
+        fragment: SET_IS_EXPANDED_FRAGMENT,
+        fragmentName: 'SetIsExpandedFragment',
+        data: {
+          isExpanded: true,
+          __typename: 'Category',
+        },
+      });
+    },
+    collapse(category) {
+      this.$apollo.provider.defaultClient.writeFragment({
+        id: `Category:${category.id}`,
+        fragment: SET_IS_EXPANDED_FRAGMENT,
+        fragmentName: 'SetIsExpandedFragment',
+        data: {
+          isExpanded: false,
+          __typename: 'Category',
+        },
+      });
     },
   },
   apollo: {
