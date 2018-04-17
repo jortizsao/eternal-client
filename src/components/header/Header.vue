@@ -8,7 +8,7 @@
 
               <!-- Toggle the menu on mobile -->
               <li class="list-item-nav-toggle">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle">
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
@@ -71,7 +71,7 @@
     </div>
 
     <div id="navigation" class="container">
-      <div class="row logo-search">
+      <div class="row logo-search hidden-xs">
         <div class="col-sm-8">
           <logo></logo>
         </div>

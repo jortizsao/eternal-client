@@ -1,0 +1,6 @@
+#import "./CategoryFragment.gql"
+
+fragment CategoryExtendedFragment on Category {
+  ...CategoryFragment
+  isExpanded
+}

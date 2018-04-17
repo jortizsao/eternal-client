@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="location-selector-component">
     <button id="location-dropdown-toggle-btn" @click="toggleDropdown();" class="location-dropdown-toggle">
-      <img class="pull-right" src="../assets/img/globe-2.png" alt="location">
+      <img class="pull-right" src="~@/assets/img/globe-2.png" alt="location">
     </button>
     <div v-if="isDropdownShown" v-on-clickaway="hideDropdown" class="location-dropdown">
       <span class="location-dropdown-label">{{ $t('language') }}</span>
