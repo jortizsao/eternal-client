@@ -5,6 +5,7 @@ import CmsGrid from '@/components/cms/CmsGrid.vue';
 import CmsColumn from '@/components/cms/CmsColumn.vue';
 import CmsBanner from '@/components/cms/CmsBanner.vue';
 import CmsButton from '@/components/cms/CmsButton.vue';
+import CmsMessage from '@/components/cms/CmsMessage.vue';
 
 export default {
   install() {
@@ -24,6 +25,7 @@ export default {
     Vue.component('CmsColumn', CmsColumn);
     Vue.component('CmsBanner', CmsBanner);
     Vue.component('CmsButton', CmsButton);
+    Vue.component('CmsMessage', CmsMessage);
     Vue.use(StoryblokVue);
   },
 };
