@@ -27,6 +27,7 @@
     "graphql": "^0.11.7",
     "graphql-tag": "^2.5.0",
     "storyblok-vue": "^1.0.3",
+    "tiny-slider": "^2.6.0",
     "uuid": "^3.2.1",
     "vee-validate": "^2.0.0-rc.3",
     "vue": "^2.2.6",

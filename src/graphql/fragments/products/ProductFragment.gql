@@ -1,0 +1,27 @@
+fragment ProductFragment on Product {
+  id
+  masterData {
+    current {
+      name(locale: "en")
+      description(locale: "en")
+      allVariants {
+        sku
+        images {
+          url
+        }
+        price(currency: "EUR") {
+          value {
+            centAmount
+            currencyCode
+          }
+          discounted {
+            value {
+              centAmount
+              currencyCode
+            }
+          }
+        }
+      }
+    }
+  }
+}

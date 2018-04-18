@@ -1,0 +1,9 @@
+#import "../../fragments/products/ProductFragment.gql"
+
+query GetProductsBySkus($skus: [String!]) {
+  products(skus: $skus) {
+    results {
+      ...ProductFragment
+    }
+  }
+}

@@ -6,6 +6,7 @@ import CmsColumn from '@/components/cms/CmsColumn.vue';
 import CmsBanner from '@/components/cms/CmsBanner.vue';
 import CmsButton from '@/components/cms/CmsButton.vue';
 import CmsMessage from '@/components/cms/CmsMessage.vue';
+import CmsProductsCarousel from '@/components/cms/CmsProductsCarousel.vue';
 
 export default {
   install() {
@@ -26,6 +27,7 @@ export default {
     Vue.component('CmsBanner', CmsBanner);
     Vue.component('CmsButton', CmsButton);
     Vue.component('CmsMessage', CmsMessage);
+    Vue.component('CmsProductsCarousel', CmsProductsCarousel);
     Vue.use(StoryblokVue);
   },
 };
