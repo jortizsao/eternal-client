@@ -9,7 +9,7 @@
     <div class="banner-text">
       <h4 v-if="blok.title" class="banner-title">{{blok.title}}</h4>
       <p v-if="blok.subtitle" class="banner-paragraph">{{blok.subtitle}}</p>
-      <p v-if="blok.description" class="hidden-xs hidden-sm">{{blok.description}}</p>
+      <p v-if="blok.description" class="hidden-xs hidden-sm" v-html="blok.description"></p>
       <cms-button v-if="blok.button[0]" :blok="blok.button[0]"></cms-button>
     </div>
       <!-- <img  :srcset="",
