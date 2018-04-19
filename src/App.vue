@@ -5,12 +5,14 @@
       <Slideout menu="#menu" panel="#panel" :toggleSelectors="['.navbar-toggle']">
         <header-component></header-component>
         <div id="panel" :class="containerClass">
-          <!-- <transition :name="transition"> -->
+          <transition :name="transition">
             <keep-alive include="home">
               <router-view></router-view>
             </keep-alive>
-          <!-- </transition> -->
+          </transition>
         </div>
+        <footer-component></footer-component>
+        <subfooter-component></subfooter-component>
       </Slideout>
       <vue-progress-bar></vue-progress-bar>
       <custom-notifications></custom-notifications>
@@ -23,6 +25,8 @@ import Slideout from 'vue-slideout';
 import { mapState } from 'vuex';
 import CustomNotifications from '@/notifications/CustomNotifications.vue';
 import HeaderComponent from './components/header/Header.vue';
+import FooterComponent from './components/footer/Footer.vue';
+import SubfooterComponent from './components/footer/SubFooter.vue';
 
 export default {
   name: 'app',
@@ -78,6 +82,8 @@ export default {
     HeaderComponent,
     CustomNotifications,
     Slideout,
+    FooterComponent,
+    SubfooterComponent,
   },
 };
 </script>

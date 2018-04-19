@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="my-account">
+  <div id="my-account" class="my-account">
     <div class="my-account-title">
       <span class="my-account-title-text icon-user">{{ $t('title') }}</span>
     </div>
