@@ -1,5 +1,3 @@
-import cmsService from '@/services/cms.service';
-
 export default {
   data() {
     return {
@@ -30,14 +28,17 @@ export default {
   },
   methods: {
     getCmsStory(slug, version) {
-      return cmsService
-        .getStory(slug, version)
-        .then(story => {
-          this.story = story;
-        })
-        .catch(err => {
-          console.error(`Error getting CMS story with slug: ${slug}`, err);
-        });
+      this.$storyblok.get(
+        {
+          slug,
+          version,
+        },
+        data => {
+          this.$nextTick(() => {
+            this.story = data.story;
+          });
+        },
+      );
     },
     getCmsStorySlug() {
       return this.slug;
