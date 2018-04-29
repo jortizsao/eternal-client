@@ -52,7 +52,7 @@ It also has other great assets:
 * Cache
 * Store management. You can get rid off Vuex or other store managements
 
-* ### [Storyblok](https://www.storyblok.com/)
+### [Storyblok](https://www.storyblok.com/)
 
 API based and headless CMS that fits perfectly with Vue.js.
 
@@ -60,11 +60,11 @@ Thanks to this CMS, the content (banners, headlines, pictures, texts...) of your
 
 All its assets are served by a CDN in order to get a higher performance.
 
-* ### [AWS Cloudfront](https://aws.amazon.com/cloudfront/)
+### [AWS Cloudfront](https://aws.amazon.com/cloudfront/)
 
 Amazon's content delivery network that delivers the static assets (_.js, _.css, images...) with a low latency.
 
-* ### [Sunrise Theme](https://github.com/commercetools/commercetools-sunrise-theme)
+### [Sunrise Theme](https://github.com/commercetools/commercetools-sunrise-theme)
 
 The look and feel of the site is based on this template (some changes have been added due to my personal preferences).
 
