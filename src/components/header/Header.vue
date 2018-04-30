@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="navbar navbar-fixed-top">
     <div class="header">
       <header class="container">
@@ -70,7 +70,7 @@
       </header>
     </div>
 
-    <div id="navigation" class="container">
+    <!-- <div id="navigation" class="container">
       <div class="row logo-search hidden-xs">
         <div class="col-sm-8">
           <logo></logo>
@@ -83,7 +83,7 @@
       <div class="row">
         <nav-bar></nav-bar>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -92,9 +92,6 @@ import { mapActions, mapState } from 'vuex';
 import MiniCart from '@/components/minicart/MiniCart.vue';
 import GET_CUSTOMER_QUERY from '@/graphql/queries/customers/GetCustomer.gql';
 import LocationSelector from './LocationSelector.vue';
-import Logo from './Logo.vue';
-import SearchBar from './SearchBar.vue';
-import NavBar from './NavBar.vue';
 
 export default {
   data() {
@@ -128,7 +125,10 @@ export default {
           return !this.isUserAuthenticated;
         },
         error(err) {
-          this.$notify({ type: 'error', text: `Error getting customer: ${err}` });
+          this.$notify({
+            type: 'error',
+            text: `Error getting customer: ${err}`,
+          });
         },
       };
     },
@@ -136,9 +136,6 @@ export default {
   components: {
     MiniCart,
     LocationSelector,
-    Logo,
-    SearchBar,
-    NavBar,
   },
 };
 </script>
