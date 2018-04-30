@@ -1,5 +1,5 @@
-@import './_general';
-@import './animations';
+@import "./_general";
+@import "./animations";
 
 $border-grey: #eeeeee;
 
@@ -54,7 +54,8 @@ input:disabled {
         width: 120px;
         color: $white;
         border: 1px solid $white;
-        background: transparent url('../img/arrow-67-white.png') no-repeat 90% 50%;
+        background: transparent url("../img/arrow-67-white.png") no-repeat 90%
+          50%;
         background-size: 10px;
         margin: 10px;
         text-transform: capitalize;
@@ -216,9 +217,29 @@ button,
   padding: 8px 20px;
 }
 
+.navigation {
+  background-color: white;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 47px;
+  padding-right: 47px;
+  width: 100%;
+  position: fixed;
+  top: 50px;
+  z-index: 1030;
+}
+
 @media screen and (max-width: 767px) {
   body {
     padding-top: 50px;
+  }
+
+  .header {
+    z-index: 2;
+  }
+
+  .navbar-default {
+    z-index: 0;
   }
 
   .slideout-menu {
@@ -232,6 +253,8 @@ button,
     display: none;
     background-color: #2a343f;
     color: white;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .navbar-default {
@@ -267,7 +290,7 @@ button,
 
   .slideout-panel {
     position: relative;
-    z-index: 9999;
+    z-index: 1;
     will-change: transform;
     min-height: 100vh;
   }

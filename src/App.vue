@@ -2,8 +2,9 @@
   <transition name="appFade">
     <div id="app" v-show="isShown">
       <div class="darkbg hidden"></div>
-      <Slideout menu="#menu" panel="#panel" :toggleSelectors="['.navbar-toggle']">
-        <header-component></header-component>
+      <header-component></header-component>
+      <Slideout menu="#navigation" panel="#panel" :toggleSelectors="['.navbar-toggle']" :touch="false">
+        <navigation-component></navigation-component>
         <div id="panel" :class="containerClass">
           <transition :name="transition">
             <keep-alive include="home">
@@ -25,6 +26,7 @@ import Slideout from 'vue-slideout';
 import { mapState } from 'vuex';
 import CustomNotifications from '@/notifications/CustomNotifications.vue';
 import HeaderComponent from './components/header/Header.vue';
+import NavigationComponent from './components/navigation/Navigation.vue';
 import FooterComponent from './components/footer/Footer.vue';
 import SubfooterComponent from './components/footer/SubFooter.vue';
 
@@ -80,6 +82,7 @@ export default {
   },
   components: {
     HeaderComponent,
+    NavigationComponent,
     CustomNotifications,
     Slideout,
     FooterComponent,
@@ -90,8 +93,8 @@ export default {
 
 <style lang="scss">
 $bootstrap-sass-asset-helper: true;
-@import '~bootstrap-sass/assets/stylesheets/_bootstrap';
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700");
 
 .slideLeft-leave-active,
 .slideRight-leave-active {
