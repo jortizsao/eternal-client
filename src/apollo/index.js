@@ -10,7 +10,7 @@ export default function ({ authentication }) {
   const httpLink = createHttpLink({
     uri: process.env.GRAPHQL_URL,
   });
-  const persistedQueryLink = createPersistedQueryLink();
+  const persistedQueryLink = createPersistedQueryLink({ useGETForHashedQueries: true });
 
   const authLink = setContext((_, { headers }) => {
     return {
