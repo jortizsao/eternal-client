@@ -60,7 +60,13 @@ export default {
         },
         fetchPolicy: 'cache-and-network',
         error(err) {
-          this.$notify({ type: 'error', text: `Error getting customer: ${err}` });
+          this.$notify({
+            type: 'error',
+            text: `Error getting customer: ${err}`,
+          });
+        },
+        context: {
+          secured: true,
         },
       };
     },

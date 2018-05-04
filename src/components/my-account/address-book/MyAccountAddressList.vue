@@ -56,7 +56,8 @@ export default {
   methods: {
     isAdditionalAddress(address) {
       return (
-        address.id !== this.defaultBillingAddressId && address.id !== this.defaultShippingAddressId
+        address.id !== this.defaultBillingAddressId &&
+        address.id !== this.defaultShippingAddressId
       );
     },
     onEditAddress(address) {
@@ -85,7 +86,10 @@ export default {
             removeCustomerAddress: {
               __typename: 'Customer',
               ...this.customer,
-              addresses: this.$myCommons.removeFromArray(this.customer.addresses, address),
+              addresses: this.$myCommons.removeFromArray(
+                this.customer.addresses,
+                address,
+              ),
               defaultShippingAddress: this.getOptimisticDefaultAddress(
                 this.customer.defaultShippingAddress,
                 address,
@@ -96,9 +100,15 @@ export default {
               ),
             },
           },
+          context: {
+            secured: true,
+          },
         })
         .catch(err => {
-          this.$notify({ type: 'error', text: `Error removing address ${err}` });
+          this.$notify({
+            type: 'error',
+            text: `Error removing address ${err}`,
+          });
         });
     },
     getAddressKey(address) {
@@ -124,10 +134,16 @@ export default {
       return this.customer.defaultBillingAddress;
     },
     defaultShippingAddressId() {
-      return this.customer.defaultShippingAddress && this.customer.defaultShippingAddress.id;
+      return (
+        this.customer.defaultShippingAddress &&
+        this.customer.defaultShippingAddress.id
+      );
     },
     defaultBillingAddressId() {
-      return this.customer.defaultBillingAddress && this.customer.defaultBillingAddress.id;
+      return (
+        this.customer.defaultBillingAddress &&
+        this.customer.defaultBillingAddress.id
+      );
     },
   },
   components: {

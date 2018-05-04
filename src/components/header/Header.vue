@@ -130,6 +130,9 @@ export default {
             text: `Error getting customer: ${err}`,
           });
         },
+        context: {
+          secured: true,
+        },
       };
     },
   },

@@ -80,9 +80,16 @@ export default {
                 currentPassword: this.currentPassword,
                 newPassword: this.newPassword,
               },
+              context: {
+                secured: true,
+              },
             })
             .then(() => {
-              this.$notify({ type: 'success', text: 'Password changed', duration: 1000 });
+              this.$notify({
+                type: 'success',
+                text: 'Password changed',
+                duration: 1000,
+              });
               this.reset();
               this.$validator.reset();
               this.$Progress.finish();
@@ -90,7 +97,9 @@ export default {
             .catch(err => {
               this.$notify({
                 type: 'error',
-                text: `Error changing password. ${this.$myCommons.getGraphqlErrorMessage(err)}`,
+                text: `Error changing password. ${this.$myCommons.getGraphqlErrorMessage(
+                  err,
+                )}`,
               });
               this.$Progress.finish();
             });
