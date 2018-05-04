@@ -119,7 +119,9 @@ export default {
   methods: {
     setAddress() {
       if (this.customer.addresses && this.addressId) {
-        const addr = this.customer.addresses.find(address => address.id === this.addressId);
+        const addr = this.customer.addresses.find(
+          address => address.id === this.addressId,
+        );
         this.address = {
           ...addr,
           isDefaultShipping: this.isDefaultShipping(this.customer, addr),
@@ -133,7 +135,8 @@ export default {
     isDefaultBilling(customer, address) {
       if (customer && address) {
         return Boolean(
-          customer.defaultBillingAddress && customer.defaultBillingAddress.id === address.id,
+          customer.defaultBillingAddress &&
+            customer.defaultBillingAddress.id === address.id,
         );
       }
 
@@ -142,7 +145,8 @@ export default {
     isDefaultShipping(customer, address) {
       if (customer && address) {
         return Boolean(
-          customer.defaultShippingAddress && customer.defaultShippingAddress.id === address.id,
+          customer.defaultShippingAddress &&
+            customer.defaultShippingAddress.id === address.id,
         );
       }
 
@@ -226,9 +230,15 @@ export default {
                     ),
                   },
                 },
+                context: {
+                  secured: true,
+                },
               })
               .catch(err => {
-                this.$notify({ type: 'error', text: `Error saving address ${err}` });
+                this.$notify({
+                  type: 'error',
+                  text: `Error saving address ${err}`,
+                });
                 this.$router.push({
                   name: 'MyAccountAddressBookEdit',
                   params: { id: this.customer.id, addressId: this.addressId },
@@ -253,7 +263,9 @@ export default {
       }));
     },
     saveAddressButtonLabel() {
-      return this.addressId ? this.$t('updateAddressButton') : this.$t('addAddressButton');
+      return this.addressId
+        ? this.$t('updateAddressButton')
+        : this.$t('addAddressButton');
     },
   },
   watch: {

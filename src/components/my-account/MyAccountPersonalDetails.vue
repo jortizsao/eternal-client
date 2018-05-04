@@ -145,6 +145,9 @@ export default {
                   lastName: this.lastName,
                 },
               },
+              context: {
+                secured: true,
+              },
             })
             .then(() => {
               this.$Progress.finish();

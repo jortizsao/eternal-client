@@ -12,11 +12,11 @@ export default function ({ authentication }) {
   });
   const persistedQueryLink = createPersistedQueryLink({ useGETForHashedQueries: true });
 
-  const authLink = setContext((_, { headers }) => {
+  const authLink = setContext((_, { headers, secured }) => {
     return {
       headers: {
         ...headers,
-        ...(authentication.token && { Authorization: `Bearer ${authentication.token}` }),
+        ...(secured && authentication.token && { Authorization: `Bearer ${authentication.token}` }),
       },
     };
   });
