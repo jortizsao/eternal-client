@@ -152,6 +152,9 @@ input:disabled {
     border-color: $border-grey;
   }
 }
+#panel {
+  background-color: #f5f2ea;
+}
 .container--home {
   margin: 0;
   padding: 0 15px;
@@ -226,7 +229,8 @@ button,
   width: 100%;
   position: fixed;
   top: 50px;
-  z-index: 1030;
+  z-index: 1000;
+  border-bottom: 1px solid #d6d6d6;
 }
 
 @media screen and (max-width: 767px) {
@@ -261,6 +265,7 @@ button,
     .navbar-nav {
       li {
         list-style: none;
+        text-align: left;
       }
 
       > li {
@@ -271,11 +276,17 @@ button,
           padding: 20px 15px;
           font-size: 18px;
           text-transform: uppercase;
+          width: 50%;
+          display: inline-block;
 
           .sale {
             color: #d54d4d;
           }
         }
+      }
+
+      .dropdown-collapse {
+        float: right;
       }
     }
   }

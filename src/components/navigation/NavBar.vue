@@ -1,26 +1,26 @@
-<template lang="html">
+<template>
   <div class="dropdown-megamenu navbar navbar-default">
     <div id="menu">
       <ul class="nav navbar-nav">
-        <li class="dropdown menu-large" v-for="rootCategory in categories.results">
+        <li class="dropdown menu-large" v-for="rootCategory in categories.results" :key="rootCategory.id">
           <a :href="getCategoryLink(rootCategory)" class="dropdown-toggle" :class="[isSale(rootCategory) ? 'sale icon-ribbon' : '']" data-toggle="dropdown">
             {{rootCategory.name}}
-            <template v-if="rootCategory.children.length">
-              <a href="#" v-show="!rootCategory.isExpanded" @click.prevent="expand(rootCategory)">
-                <span class="glyphicon glyphicon-plus mobile-plus-content visible-xs" aria-hidden="true"></span>
-              </a>
-              <a href="#" v-show="rootCategory.isExpanded" @click.prevent="collapse(rootCategory)">
-                <span class="glyphicon glyphicon-minus mobile-plus-content visible-xs" aria-hidden="true"></span>
-              </a>
-            </template>
           </a>
+          <template v-if="rootCategory.children.length">
+            <a href="#" v-show="!rootCategory.isExpanded" @click.prevent="expand(rootCategory)" class="dropdown-collapse hidden-sm hidden-md hidden-lg">
+              <span class="glyphicon glyphicon-plus mobile-plus-content visible-xs" aria-hidden="true"></span>
+            </a>
+            <a href="#" v-show="rootCategory.isExpanded" @click.prevent="collapse(rootCategory)" class="dropdown-collapse hidden-sm hidden-md hidden-lg">
+              <span class="glyphicon glyphicon-minus mobile-plus-content visible-xs" aria-hidden="true"></span>
+            </a>
+          </template>
           <ul v-if="rootCategory.children.length" class="dropdown-menu megamenu row dropdown-submenu hidden-xs">
             <li class="col-sm-8">
               <div class="nav-accordion">
                 <template v-for="firstChild in rootCategory.children">
-                  <h3><a :href="getCategoryLink(firstChild)">{{firstChild.name}}</a></h3>
-                  <ul>
-                    <li v-for="secondChild in firstChild.children">
+                  <h3 :key="firstChild.id"><a :href="getCategoryLink(firstChild)">{{firstChild.name}}</a></h3>
+                  <ul :key="firstChild.id">
+                    <li v-for="secondChild in firstChild.children" :key="secondChild.id">
                       <a :href="getCategoryLink(secondChild)">{{secondChild.name}}</a>
                     </li>
                   </ul>
@@ -33,9 +33,9 @@
             <li class="col-sm-8">
               <div class="nav-accordion">
                 <template v-for="firstChild in rootCategory.children">
-                  <h3><a :href="getCategoryLink(firstChild)">{{firstChild.name}}</a></h3>
-                  <ul>
-                    <li v-for="secondChild in firstChild.children">
+                  <h3 :key="firstChild.id"><a :href="getCategoryLink(firstChild)">{{firstChild.name}}</a></h3>
+                  <ul :key="firstChild.id">
+                    <li v-for="secondChild in firstChild.children" :key="secondChild.id">
                       <a :href="getCategoryLink(secondChild)">{{secondChild.name}}</a>
                     </li>
                   </ul>
@@ -68,7 +68,10 @@ export default {
       .query({
         query: GET_MAIN_CATEGORIES_QUERY,
         error(err) {
-          this.$notify({ type: 'error', text: `Error getting main categories: ${err}` });
+          this.$notify({
+            type: 'error',
+            text: `Error getting main categories: ${err}`,
+          });
         },
       })
       .then(res => {
@@ -85,18 +88,26 @@ export default {
             where: `parent(id in (${ids}))`,
           },
           error(err) {
-            this.$notify({ type: 'error', text: `Error getting children categories: ${err}` });
+            this.$notify({
+              type: 'error',
+              text: `Error getting children categories: ${err}`,
+            });
           },
         });
       })
       .then(res => {
-        const childrenMap = res.data.categories.results.reduce((acc, category) => {
-          const existingValue = acc[category.parent.id];
+        const childrenMap = res.data.categories.results.reduce(
+          (acc, category) => {
+            const existingValue = acc[category.parent.id];
 
-          acc[category.parent.id] = existingValue ? [...existingValue, category] : [category];
+            acc[category.parent.id] = existingValue
+              ? [...existingValue, category]
+              : [category];
 
-          return acc;
-        }, {});
+            return acc;
+          },
+          {},
+        );
 
         Object.keys(childrenMap).forEach(parentId => {
           const children = childrenMap[parentId];
@@ -155,7 +166,10 @@ export default {
       return {
         query: GET_ALL_CATEGORIES_QUERY,
         error(err) {
-          this.$notify({ type: 'error', text: `Error getting all categories: ${err}` });
+          this.$notify({
+            type: 'error',
+            text: `Error getting all categories: ${err}`,
+          });
         },
         skip: true,
         fetchPolicy: 'cache-only',
