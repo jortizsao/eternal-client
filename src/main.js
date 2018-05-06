@@ -7,7 +7,11 @@ import notifications from 'vue-notification';
 import vue2Filters from 'vue2-filters';
 import { Select, Option } from 'element-ui';
 import VueApollo from 'vue-apollo';
+import VueImg from 'v-img/dist/v-img';
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import VueRate from 'vue-rate';
 import 'element-ui/lib/theme-default/index.css';
+import 'swiper/dist/css/swiper.css';
 import App from './App.vue';
 import Router from './router';
 import I18n from './i18n';
@@ -47,6 +51,9 @@ Vue.use(storyblok);
 Vue.use(authentication);
 Vue.use(myFilters);
 Vue.use(myCommons);
+Vue.use(VueImg);
+Vue.use(VueAwesomeSwiper);
+Vue.use(VueRate);
 
 /* eslint-disable no-new */
 new Vue({

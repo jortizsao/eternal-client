@@ -66,7 +66,14 @@ export default {
   },
   computed: {
     containerClass() {
-      return this.$route.name === 'Home' ? 'container--home' : 'container';
+      switch (this.$route.name) {
+        case 'Home':
+          return 'container--home';
+        case 'ProductDetailPage':
+          return '';
+        default:
+          return 'container';
+      }
     },
     ...mapState('general', ['language']),
   },

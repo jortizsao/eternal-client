@@ -2,8 +2,19 @@ fragment ProductFragment on Product {
   id
   masterData {
     current {
-      name(locale: "en")
-      description(locale: "en")
+      name(locale: $locale)
+      description(locale: $locale)
+      slug(locale: $locale)
+      categories {
+        id
+        name(locale: $locale)
+        slug(locale: $locale)
+        ancestors {
+          id
+          name(locale: $locale)
+          slug(locale: $locale)
+        }
+      }
       allVariants {
         sku
         images {
@@ -18,6 +29,16 @@ fragment ProductFragment on Product {
             value {
               centAmount
               currencyCode
+            }
+          }
+        }
+        attributesRaw {
+          value
+          attributeDefinition {
+            name
+            label(locale: $locale)
+            type {
+              name
             }
           }
         }

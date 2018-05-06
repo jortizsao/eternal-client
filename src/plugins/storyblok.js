@@ -8,6 +8,7 @@ import CmsButton from '@/components/cms/CmsButton.vue';
 import CmsMessage from '@/components/cms/CmsMessage.vue';
 import CmsProductsCarousel from '@/components/cms/CmsProductsCarousel.vue';
 import CmsSeparator from '@/components/cms/CmsSeparator.vue';
+import CmsPanel from '@/components/cms/CmsPanel.vue';
 
 export default {
   install() {
@@ -30,6 +31,7 @@ export default {
     Vue.component('CmsMessage', CmsMessage);
     Vue.component('CmsProductsCarousel', CmsProductsCarousel);
     Vue.component('CmsSeparator', CmsSeparator);
+    Vue.component('CmsPanel', CmsPanel);
     Vue.use(StoryblokVue);
   },
 };

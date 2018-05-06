@@ -4,7 +4,7 @@
       <ul class="nav navbar-nav">
         <li class="dropdown menu-large" v-for="rootCategory in categories.results" :key="rootCategory.id">
           <a :href="getCategoryLink(rootCategory)" class="dropdown-toggle" :class="[isSale(rootCategory) ? 'sale icon-ribbon' : '']" data-toggle="dropdown">
-            {{rootCategory.name}}
+            {{getCategoryName(rootCategory)}}
           </a>
           <template v-if="rootCategory.children.length">
             <a href="#" v-show="!rootCategory.isExpanded" @click.prevent="expand(rootCategory)" class="dropdown-collapse hidden-sm hidden-md hidden-lg">
@@ -18,10 +18,10 @@
             <li class="col-sm-8">
               <div class="nav-accordion">
                 <template v-for="firstChild in rootCategory.children">
-                  <h3 :key="firstChild.id"><a :href="getCategoryLink(firstChild)">{{firstChild.name}}</a></h3>
+                  <h3 :key="firstChild.id"><a :href="getCategoryLink(firstChild)">{{getCategoryName(firstChild)}}</a></h3>
                   <ul :key="firstChild.id">
                     <li v-for="secondChild in firstChild.children" :key="secondChild.id">
-                      <a :href="getCategoryLink(secondChild)">{{secondChild.name}}</a>
+                      <a :href="getCategoryLink(secondChild)">{{getCategoryName(secondChild)}}</a>
                     </li>
                   </ul>
                 </template>
@@ -33,10 +33,10 @@
             <li class="col-sm-8">
               <div class="nav-accordion">
                 <template v-for="firstChild in rootCategory.children">
-                  <h3 :key="firstChild.id"><a :href="getCategoryLink(firstChild)">{{firstChild.name}}</a></h3>
+                  <h3 :key="firstChild.id"><a :href="getCategoryLink(firstChild)">{{getCategoryName(firstChild)}}</a></h3>
                   <ul :key="firstChild.id">
                     <li v-for="secondChild in firstChild.children" :key="secondChild.id">
-                      <a :href="getCategoryLink(secondChild)">{{secondChild.name}}</a>
+                      <a :href="getCategoryLink(secondChild)">{{getCategoryName(secondChild)}}</a>
                     </li>
                   </ul>
                 </template>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import GET_MAIN_CATEGORIES_QUERY from '@/graphql/queries/categories/GetMainCategories.gql';
 import GET_CATEGORIES_QUERY from '@/graphql/queries/categories/GetCategories.gql';
 import GET_ALL_CATEGORIES_QUERY from '@/graphql/queries/categories/GetAllCategories.gql';
@@ -96,18 +97,13 @@ export default {
         });
       })
       .then(res => {
-        const childrenMap = res.data.categories.results.reduce(
-          (acc, category) => {
-            const existingValue = acc[category.parent.id];
+        const childrenMap = res.data.categories.results.reduce((acc, category) => {
+          const existingValue = acc[category.parent.id];
 
-            acc[category.parent.id] = existingValue
-              ? [...existingValue, category]
-              : [category];
+          acc[category.parent.id] = existingValue ? [...existingValue, category] : [category];
 
-            return acc;
-          },
-          {},
-        );
+          return acc;
+        }, {});
 
         Object.keys(childrenMap).forEach(parentId => {
           const children = childrenMap[parentId];
@@ -133,10 +129,10 @@ export default {
   },
   methods: {
     isSale(category) {
-      return category.name.toLowerCase() === 'sale';
+      return category[`name_${this.language}`].toLowerCase() === 'sale';
     },
     getCategoryLink(category) {
-      return `categories/${category.slug}`;
+      return `categories/${category[`slug_${this.language}`]}`;
     },
     expand(category) {
       this.$apollo.provider.defaultClient.writeFragment({
@@ -160,6 +156,12 @@ export default {
         },
       });
     },
+    getCategoryName(category) {
+      return category[`name_${this.language}`];
+    },
+  },
+  computed: {
+    ...mapState('general', ['language']),
   },
   apollo: {
     categories() {
