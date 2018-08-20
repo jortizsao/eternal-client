@@ -1,7 +1,7 @@
-var path = require('path');
-var utils = require('./utils');
-var config = require('../config');
-var vueLoaderConfig = require('./vue-loader.conf');
+let path = require('path');
+let utils = require('./utils');
+let config = require('../config');
+let vueLoaderConfig = require('./vue-loader.conf');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -21,7 +21,6 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
       '@': resolve('src'),
     },
   },
@@ -67,8 +66,8 @@ module.exports = {
       {
         test: /\.(graphql|gql)$/,
         exclude: /node_modules/,
-        loader: 'graphql-tag/loader'
-      }
+        loader: 'graphql-tag/loader',
+      },
     ],
   },
 };
