@@ -1,6 +1,6 @@
 <template>
   <div v-editable="blok" class="recommended-products-slider">
-    <product-thumbnail v-for="product in products"
+    <product-thumbnail class="col-md-3 col-sm-6" v-for="product in products"
       :product="product"
       :variant="getSelectedVariant(product)"
       :key="product.id">
@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import { tns } from 'tiny-slider/src/tiny-slider.module';
 import { mapState } from 'vuex';
 import GET_PRODUCTS_BY_SKUS_QUERY from '@/graphql/queries/products/GetProductsBySkus.gql';
 import ProductThumbnail from '@/components/products/ProductThumbnail.vue';
@@ -44,43 +43,12 @@ export default {
     },
   },
   methods: {
-    createSlider() {
-      if (this.slider) {
-        this.slider.destroy();
-      }
-
-      this.$nextTick(() => {
-        this.slider = tns({
-          container: '.recommended-products-slider',
-          loop: this.blok.loop,
-          controls: false,
-          autoplay: false,
-          autoplayButtonOutput: false,
-          mouseDrag: false,
-          responsive: {
-            768: {
-              items: 2,
-            },
-            1024: {
-              items: 3,
-            },
-            1200: {
-              items: 4,
-            },
-          },
-        });
-      });
-    },
     getSelectedVariant(product) {
       return product.masterData.current.allVariants[0];
     },
   },
   computed: {
     ...mapState('general', ['language']),
-  },
-  watch: {
-    blok: 'createSlider',
-    products: 'createSlider',
   },
   components: {
     ProductThumbnail,
