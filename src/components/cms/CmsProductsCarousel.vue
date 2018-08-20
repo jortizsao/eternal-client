@@ -10,6 +10,7 @@
 
 <script>
 import { tns } from 'tiny-slider/src/tiny-slider.module';
+import { mapState } from 'vuex';
 import GET_PRODUCTS_BY_SKUS_QUERY from '@/graphql/queries/products/GetProductsBySkus.gql';
 import ProductThumbnail from '@/components/products/ProductThumbnail.vue';
 
@@ -28,12 +29,16 @@ export default {
         variables() {
           return {
             skus: this.blok.products.map(p => p.sku),
+            locale: this.language,
           };
         },
         fetchPolicy: 'cache-and-network',
         update: data => data.products.results,
         error(err) {
-          this.$notify({ type: 'error', text: `Error getting products by skus: ${err}` });
+          this.$notify({
+            type: 'error',
+            text: `Error getting products by skus: ${err}`,
+          });
         },
       };
     },
@@ -49,7 +54,7 @@ export default {
           container: '.recommended-products-slider',
           loop: this.blok.loop,
           controls: false,
-          autoplay: true,
+          autoplay: false,
           autoplayButtonOutput: false,
           mouseDrag: false,
           responsive: {
@@ -60,7 +65,7 @@ export default {
               items: 3,
             },
             1200: {
-              items: this.blok.itemsShown,
+              items: 4,
             },
           },
         });
@@ -69,6 +74,9 @@ export default {
     getSelectedVariant(product) {
       return product.masterData.current.allVariants[0];
     },
+  },
+  computed: {
+    ...mapState('general', ['language']),
   },
   watch: {
     blok: 'createSlider',

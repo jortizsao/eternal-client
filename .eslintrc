@@ -10,9 +10,9 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": "build/webpack.base.conf.js",
-      },
-    },
+        "config": "build/webpack.base.conf.js"
+      }
+    }
   },
   "extends": "airbnb/base",
   "rules": {
@@ -22,15 +22,15 @@
     "indent": "warn",
     "consistent-return": "off",
     "no-else-return": "off",
-    "no-param-reassign": ["error", { props: false }],
+    "no-param-reassign": ["error", { "props": false }],
     "arrow-parens": "off",
-    "no-debugger": "off",
+    "no-debugger": "off"
   },
   "plugins": ["html", "jasmine"],
   "env": {
     "jasmine": true,
     "es6": true,
-    "browser": true,
+    "browser": true
   },
   "globals": {
     "jest": false

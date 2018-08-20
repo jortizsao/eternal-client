@@ -1,8 +1,8 @@
 <template>
-  <div id="product-thumbnail">
-    <a href="#">
+  <div class="product-thumbnail">
+    <router-link :to="{ name: 'ProductDetailPage', params: { slug, id: product.id }}">
       <div class="shop-item">
-        <div v-if="product.sale" class="sale-flag">{{ $t('sale') }}</div>
+        <div v-if="isSale" class="sale-flag">{{ $t('sale') }}</div>
         <div v-if="product.new" class="new-flag">{{ $t('new') }}</div>
         <!-- <form id="form-add-to-wishlist-mobile{{index}}" method="post" {{#if wishlist}}class="hidden"{{/if}} name="add-to-wishlist-mobile" action="{{@root.meta._links.addToWishlist.href}}">
             <input type="hidden" name="csrfToken" value="{{@root.meta.csrfToken}}"/>
@@ -30,7 +30,6 @@
           </template>
         </div>
         <div class="pop-product-more-colors">
-          <!-- {{!-- {{#if thumbnail.moreColors}}{{i18n "catalog:thumbnail.moreColors"}}{{/if}}&nbsp; --}} -->
           <ul class="list-inline">
             <li>
               <div class="product-thumbnail-swatch-red"></div>
@@ -44,26 +43,13 @@
           </ul>
         </div>
         <div class="shop-item-overlay hidden-xs">
+          
           <button type="button" class="quickview">
             {{ $t('quickView') }}
           </button>
-          <!--
-          <button type="button" class="quickview" data-modal="quickview-modal{{index}}">
-            {{i18n "catalog:thumbnail.quickView"}}
-          </button>
-          <form id="form-add-to-wishlist{{index}}" method="post" {{#if wishlist}}class="hidden"{{/if}} name="add-to-wishlist" action="{{@root.meta._links.addToWishlist.href}}">
-              <input type="hidden" name="csrfToken" value="{{@root.meta.csrfToken}}"/>
-              <input type="hidden" name="productId" value="{{product.productId}}">
-              <input type="hidden" name="variantId" value="{{product.variantId}}">
-
-              <button type="submit" class="heart">
-              <span class="sr-only">{{i18n "catalog:wishlist.add"}}</span>
-            </button>
-          </form> -->
         </div>
       </div>
-    </a>
-    <!-- {{> catalog/quickview wishlist=wishlist}} -->
+    </router-link>
   </div>
 </template>
 <script>
@@ -99,14 +85,22 @@ export default {
         ? this.variant.price.discounted.value
         : this.variant.price.value;
     },
-  },
-  filters: {
-    money(amount) {
-      if (!amount) {
-        return '-';
-      }
+    slug() {
+      return this.product.masterData.current.slug;
+    },
+    isSale() {
+      return this.variant.price.discounted !== null;
+      // if (this.product.masterData.current.categories.length) {
+      //   return (
+      //     this.product.masterData.current.categories
+      //       .reduce((acc, category) => {
+      //         return [...acc, ...category.ancestors, category];
+      //       }, [])
+      //       .filter(category => category.slug === 'sale').length > 0
+      //   );
+      // }
 
-      return `${amount.currencyCode} ${(amount.centAmount / 100).toFixed(2)}`;
+      // return false;
     },
   },
 };

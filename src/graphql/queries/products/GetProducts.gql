@@ -1,7 +1,7 @@
 #import "../../fragments/products/ProductFragment.gql"
 
-query GetProductsBySkus($skus: [String!], $locale: Locale!) {
-  products(skus: $skus) {
+query GetProducts($where: String!, $locale: Locale!) {
+  products(where: $where) {
     results {
       ...ProductFragment
     }

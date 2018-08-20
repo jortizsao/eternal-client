@@ -4,6 +4,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
+import { toIdValue } from 'apollo-utilities';
 import VueApollo from 'vue-apollo';
 
 export default function ({ authentication }) {
@@ -21,6 +22,15 @@ export default function ({ authentication }) {
     };
   });
 
+  const cache = new InMemoryCache({
+    cacheResolvers: {
+      Query: {
+        product: (_, args) =>
+          toIdValue(cache.config.dataIdFromObject({ __typename: 'Product', id: args.id })),
+      },
+    },
+  });
+
   Vue.use(VueApollo);
 
   return new ApolloClient({
@@ -28,7 +38,7 @@ export default function ({ authentication }) {
       process.env.NODE_ENV === 'production'
         ? authLink.concat(persistedQueryLink).concat(httpLink)
         : authLink.concat(httpLink),
-    cache: new InMemoryCache(),
+    cache,
     connectToDevTools: true,
   });
 }

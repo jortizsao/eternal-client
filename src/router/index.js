@@ -8,6 +8,7 @@ import MyAccountAddressBook from '@/components/my-account/address-book/MyAccount
 import MyAccountAddressList from '@/components/my-account/address-book/MyAccountAddressList.vue';
 import MyAccountAddressAddEditForm from '@/components/my-account/address-book/MyAccountAddressAddEditForm.vue';
 import ForgotPassword from '@/components/ForgotPassword.vue';
+import ProductDetailPage from '@/components/products/product-detail/ProductDetailPage.vue';
 
 export default function ({ authentication }) {
   Vue.use(Router);
@@ -102,6 +103,12 @@ export default function ({ authentication }) {
         path: '/user/forgotPassword',
         name: 'ForgotPassword',
         component: ForgotPassword,
+      },
+      {
+        path: '/products/:slug',
+        name: 'ProductDetailPage',
+        component: ProductDetailPage,
+        props: true,
       },
     ],
   });

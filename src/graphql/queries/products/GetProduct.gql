@@ -1,0 +1,7 @@
+#import "../../fragments/products/ProductFragment.gql"
+
+query GetProduct($id: String!, $locale: Locale!) {
+  product(id: $id) {
+    ...ProductFragment
+  }
+}

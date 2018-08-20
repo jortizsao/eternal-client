@@ -16,7 +16,7 @@ export default {
       });
 
       this.$storyblok.pingEditor(() => {
-        if (this.$storyblok.isInEditor()) {
+        if (this.$storyblok.isInEditor() || process.env.NODE_ENV === 'development') {
           this.setCmsVersion('draft');
           this.getCmsStory(this.getCmsStorySlug(), this.getCmsVersion());
         } else {

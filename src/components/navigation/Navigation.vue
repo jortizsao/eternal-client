@@ -1,16 +1,18 @@
 <template>
-  <div id="navigation" class="container navigation">
-    <div class="row logo-search hidden-xs">
-      <div class="col-sm-8">
-        <logo></logo>
+  <div id="navigation" class="navigation">
+    <div class="container">
+      <div class="row logo-search hidden-xs">
+        <div class="col-sm-8">
+          <logo></logo>
+        </div>
+        <div class="col-sm-4">
+          <search-bar></search-bar>
+        </div>
       </div>
-      <div class="col-sm-4">
-        <search-bar></search-bar>
-      </div>
-    </div>
 
-    <div class="row">
-      <nav-bar></nav-bar>
+      <div class="row">
+        <nav-bar></nav-bar>
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +30,3 @@ export default {
   },
 };
 </script>
-
-<style>
-
-</style>

@@ -3,6 +3,8 @@ fragment CategoryFragment on Category {
   parent {
     id
   }
-  name(locale: "en")
-  slug(locale: "en")
+  name_de: name(locale: "de")
+  name_en: name(locale: "en")
+  slug_de: slug(locale: "de")
+  slug_en: slug(locale: "en")
 }

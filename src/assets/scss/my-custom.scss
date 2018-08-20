@@ -233,6 +233,20 @@ button,
   border-bottom: 1px solid #d6d6d6;
 }
 
+.product-detail-rating {
+  .Rate__star {
+    padding: 0px !important;
+  }
+
+  .icon {
+    margin: 0 2px !important;
+  }
+}
+
+.product-actions-list > li .bag-items {
+  line-height: inherit;
+}
+
 @media screen and (max-width: 767px) {
   body {
     padding-top: 50px;
@@ -320,5 +334,23 @@ button,
     color: white;
     opacity: 1;
     font-weight: bold;
+  }
+}
+
+.shop-item {
+  max-height: 500px;
+
+  .pop-product-image {
+    height: inherit;
+  }
+}
+
+.product-detail-price {
+  padding: 10px 0px 0px;
+}
+
+.product-list-reserve-in-store {
+  .pdp-product-reserve {
+    margin: 10px 0px;
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div v-editable="blok" class="row" :class="blok.cssClass">
+  <div v-editable="blok" :class="blok.cssClass">
     <component v-for="item in blok.body"
       :blok="item"
       :is="item.component"
