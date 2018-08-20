@@ -4,13 +4,9 @@
       <img v-img :src="selectedImage.url" class="product-detail-main-image">
     </div>
     <div class="row product-detail-image-thumbnails">
-      <swiper>
-       <swiper-slide v-for="(image, index) in images" :key="image.url">
-        <a href="" @click.prevent="selectImage(index)">
-          <img :src="image.url" :alt="image.name" class="img-thumbnail img-responsive product-detail-thumbnail-image">
-        </a>
-       </swiper-slide>
-      </swiper>
+      <a href="" v-for="(image, index) in images" :key="image.url" @click.prevent="selectImage(index)">
+        <img :src="image.url" :alt="image.name" class="img-thumbnail img-responsive product-detail-thumbnail-image">
+      </a>
     </div>
   </div>
 </template>
