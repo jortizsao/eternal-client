@@ -16,12 +16,18 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import VueImg from 'v-img/dist/v-img';
+import VueRate from 'vue-rate';
 import { mapState } from 'vuex';
 import GET_PRODUCT_QUERY from '@/graphql/queries/products/GetProduct.gql';
 import GET_PRODUCTS_QUERY from '@/graphql/queries/products/GetProducts.gql';
 import ProductDetailBreadcrumb from './ProductDetailBreadcrumb.vue';
 import ProductDetailInfo from './ProductDetailInfo.vue';
 import productMixin from '../mixins/product-mixin';
+
+Vue.use(VueImg);
+Vue.use(VueRate);
 
 export default {
   name: 'productDetailPage',

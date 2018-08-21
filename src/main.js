@@ -7,8 +7,6 @@ import notifications from 'vue-notification';
 import vue2Filters from 'vue2-filters';
 import { Select, Option } from 'element-ui';
 import VueApollo from 'vue-apollo';
-import VueImg from 'v-img/dist/v-img';
-import VueRate from 'vue-rate';
 import 'element-ui/lib/theme-default/index.css';
 import App from './App.vue';
 import Router from './router';
@@ -49,8 +47,6 @@ Vue.use(storyblok);
 Vue.use(authentication);
 Vue.use(myFilters);
 Vue.use(myCommons);
-Vue.use(VueImg);
-Vue.use(VueRate);
 
 /* eslint-disable no-new */
 new Vue({
