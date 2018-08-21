@@ -1,14 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home.vue';
-import MyAccount from '@/components/my-account/MyAccount.vue';
-import MyAccountPersonalDetails from '@/components/my-account/MyAccountPersonalDetails.vue';
-import MyAccountChangePassword from '@/components/my-account/MyAccountChangePassword.vue';
-import MyAccountAddressBook from '@/components/my-account/address-book/MyAccountAddressBook.vue';
-import MyAccountAddressList from '@/components/my-account/address-book/MyAccountAddressList.vue';
-import MyAccountAddressAddEditForm from '@/components/my-account/address-book/MyAccountAddressAddEditForm.vue';
-import ForgotPassword from '@/components/ForgotPassword.vue';
-import ProductDetailPage from '@/components/products/product-detail/ProductDetailPage.vue';
 
 export default function ({ authentication }) {
   Vue.use(Router);
@@ -41,7 +33,7 @@ export default function ({ authentication }) {
       {
         path: '/user/:id/myAccount',
         name: 'MyAccount',
-        component: MyAccount,
+        component: () => import('@/components/my-account/MyAccount.vue'),
         props: true,
         meta: { requiresAuthentication: true },
         children: [
@@ -49,35 +41,35 @@ export default function ({ authentication }) {
             path: 'personalDetails',
             name: 'MyAccountPersonalDetails',
             meta: { tab: 'personalDetails' },
-            component: MyAccountPersonalDetails,
+            component: () => import('@/components/my-account/MyAccountPersonalDetails.vue'),
           },
           {
             path: 'changePassword',
             name: 'MyAccountChangePassword',
             meta: { tab: 'changePassword' },
-            component: MyAccountChangePassword,
+            component: () => import('@/components/my-account/MyAccountChangePassword.vue'),
           },
           {
             path: 'addressBook',
-            component: MyAccountAddressBook,
+            component: () => import('@/components/my-account/address-book/MyAccountAddressBook.vue'),
             children: [
               {
                 path: '',
                 name: 'MyAccountAddressBookList',
                 meta: { tab: 'addressBook' },
-                component: MyAccountAddressList,
+                component: () => import('@/components/my-account/address-book/MyAccountAddressList.vue'),
               },
               {
                 path: 'add',
                 name: 'MyAccountAddressBookAdd',
                 meta: { tab: 'addressBook' },
-                component: MyAccountAddressAddEditForm,
+                component: () => import('@/components/my-account/address-book/MyAccountAddressAddEditForm.vue'),
               },
               {
                 path: 'edit/:addressId',
                 name: 'MyAccountAddressBookEdit',
                 meta: { tab: 'addressBook' },
-                component: MyAccountAddressAddEditForm,
+                component: () => import('@/components/my-account/address-book/MyAccountAddressAddEditForm.vue'),
                 props: true,
               },
             ],
@@ -102,12 +94,12 @@ export default function ({ authentication }) {
       {
         path: '/user/forgotPassword',
         name: 'ForgotPassword',
-        component: ForgotPassword,
+        component: () => import('@/components/ForgotPassword.vue'),
       },
       {
         path: '/products/:slug',
         name: 'ProductDetailPage',
-        component: ProductDetailPage,
+        component: () => import('@/components/products/product-detail/ProductDetailPage.vue'),
         props: true,
       },
     ],
