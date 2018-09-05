@@ -7,9 +7,7 @@
         <navigation-component></navigation-component>
         <div id="panel" :class="containerClass">
           <transition :name="transition">
-            <keep-alive include="home">
-              <router-view></router-view>
-            </keep-alive>
+            <router-view></router-view>
           </transition>
         </div>
         <footer-component></footer-component>

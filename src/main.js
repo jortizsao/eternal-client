@@ -23,7 +23,9 @@ import './assets/scss/main.scss';
 import './assets/scss/my-custom.scss';
 
 const store = Store();
-const i18n = I18n();
+const defaultLanguage = store.state.general.language || 'en';
+
+const i18n = I18n({ locale: defaultLanguage, fallbackLocale: defaultLanguage });
 const apolloProvider = new VueApollo({
   defaultClient: Apollo({ authentication: store.state.authentication }),
 });
@@ -32,7 +34,11 @@ const authentication = Authentication({
   authentication: store.state.authentication,
   utilsAuthentication,
 });
-const router = Router({ authentication });
+const router = Router({
+  authentication,
+  defaultLanguage,
+  setLanguage: language => store.commit('general/SET_LANGUAGE', language),
+});
 
 // Set default url for api calls
 axios.defaults.baseURL = process.env.API_URL;

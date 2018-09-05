@@ -92,6 +92,7 @@ export default {
             text: `Error getting product: ${err}`,
           });
         },
+        fetchPolicy: 'cache-and-network',
       };
     },
   },
