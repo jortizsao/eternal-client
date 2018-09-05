@@ -19,7 +19,7 @@
 
 <script>
 import { mixin as clickaway } from 'vue-clickaway';
-import { mapState, mapMutations } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   mixins: [clickaway],
@@ -48,10 +48,13 @@ export default {
       }
     },
     onLanguageChanged(newLanguage) {
-      this.SET_LANGUAGE(newLanguage);
       this.isDropdownShown = false;
+      this.$router.push({
+        name: this.$route.name,
+        params: { ...this.$route.params, locale: newLanguage },
+        query: { ...this.$route.query },
+      });
     },
-    ...mapMutations('general', ['SET_LANGUAGE']),
   },
   computed: {
     ...mapState('general', ['language']),
