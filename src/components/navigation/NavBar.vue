@@ -1,51 +1,21 @@
 <template>
   <div class="dropdown-megamenu navbar navbar-default">
-    <div id="menu">
-      <ul class="nav navbar-nav">
-        <li class="dropdown menu-large" v-for="rootCategory in categories.results" :key="rootCategory.id">
-          <a :href="getCategoryLink(rootCategory)" class="dropdown-toggle" :class="[isSale(rootCategory) ? 'sale icon-ribbon' : '']" data-toggle="dropdown">
-            {{getCategoryName(rootCategory)}}
-          </a>
-          <template v-if="rootCategory.children.length">
-            <a href="#" v-show="!rootCategory.isExpanded" @click.prevent="expand(rootCategory)" class="dropdown-collapse hidden-sm hidden-md hidden-lg">
-              <span class="glyphicon glyphicon-plus mobile-plus-content visible-xs" aria-hidden="true"></span>
-            </a>
-            <a href="#" v-show="rootCategory.isExpanded" @click.prevent="collapse(rootCategory)" class="dropdown-collapse hidden-sm hidden-md hidden-lg">
-              <span class="glyphicon glyphicon-minus mobile-plus-content visible-xs" aria-hidden="true"></span>
-            </a>
-          </template>
-          <ul v-if="rootCategory.children.length" class="dropdown-menu megamenu row dropdown-submenu hidden-xs">
-            <li class="col-sm-8">
-              <div class="nav-accordion">
-                <template v-for="firstChild in rootCategory.children">
-                  <h3 :key="firstChild.id"><a :href="getCategoryLink(firstChild)">{{getCategoryName(firstChild)}}</a></h3>
-                  <ul :key="firstChild.id">
-                    <li v-for="secondChild in firstChild.children" :key="secondChild.id">
-                      <a :href="getCategoryLink(secondChild)">{{getCategoryName(secondChild)}}</a>
-                    </li>
-                  </ul>
-                </template>
-              </div>
-            </li>
-          </ul>
-
-          <ul v-if="rootCategory.children && rootCategory.isExpanded" class="visible-xs">
-            <li class="col-sm-8">
-              <div class="nav-accordion">
-                <template v-for="firstChild in rootCategory.children">
-                  <h3 :key="firstChild.id"><a :href="getCategoryLink(firstChild)">{{getCategoryName(firstChild)}}</a></h3>
-                  <ul :key="firstChild.id">
-                    <li v-for="secondChild in firstChild.children" :key="secondChild.id">
-                      <a :href="getCategoryLink(secondChild)">{{getCategoryName(secondChild)}}</a>
-                    </li>
-                  </ul>
-                </template>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <nav-bar-desktop class="hidden-xs"
+      :categories="categories.results"
+      :get-category-slug="getCategorySlug" 
+      :get-category-name="getCategoryName" 
+      :is-sale="isSale" 
+      @expand="expand" 
+      @collapse="collapse">
+    </nav-bar-desktop>
+    <nav-bar-mobile class="hidden-sm hidden-md hidden-lg"
+      :categories="categories.results"
+      :get-category-name="getCategoryName"
+      :get-category-slug="getCategorySlug"
+      :is-sale="isSale" 
+      @expand="expand" 
+      @collapse="collapse">
+    </nav-bar-mobile>
   </div>
 </template>
 
@@ -57,11 +27,14 @@ import GET_ALL_CATEGORIES_QUERY from '@/graphql/queries/categories/GetAllCategor
 import CHILDREN_FRAGMENT from '@/graphql/fragments/categories/ChildrenFragment.gql';
 import CATEGORY_FRAGMENT from '@/graphql/fragments/categories/CategoryFragment.gql';
 import SET_IS_EXPANDED_FRAGMENT from '@/graphql/fragments/categories/SetIsExpandedFragment.gql';
+import NavBarDesktop from './NavBarDesktop.vue';
+import NavBarMobile from './NavBarMobile.vue';
 
 export default {
   data() {
     return {
       categories: [],
+      expandFunctions: [],
     };
   },
   created() {
@@ -131,30 +104,34 @@ export default {
     isSale(category) {
       return category[`name_${this.language}`].toLowerCase() === 'sale';
     },
-    getCategoryLink(category) {
-      return `categories/${category[`slug_${this.language}`]}`;
+    getCategorySlug(category) {
+      return category[`slug_${this.language}`];
     },
     expand(category) {
-      this.$apollo.provider.defaultClient.writeFragment({
-        id: `Category:${category.id}`,
-        fragment: SET_IS_EXPANDED_FRAGMENT,
-        fragmentName: 'SetIsExpandedFragment',
-        data: {
-          isExpanded: true,
-          __typename: 'Category',
-        },
-      });
+      if (!category.isExpanded) {
+        this.$apollo.provider.defaultClient.writeFragment({
+          id: `Category:${category.id}`,
+          fragment: SET_IS_EXPANDED_FRAGMENT,
+          fragmentName: 'SetIsExpandedFragment',
+          data: {
+            isExpanded: true,
+            __typename: 'Category',
+          },
+        });
+      }
     },
     collapse(category) {
-      this.$apollo.provider.defaultClient.writeFragment({
-        id: `Category:${category.id}`,
-        fragment: SET_IS_EXPANDED_FRAGMENT,
-        fragmentName: 'SetIsExpandedFragment',
-        data: {
-          isExpanded: false,
-          __typename: 'Category',
-        },
-      });
+      if (category.isExpanded) {
+        this.$apollo.provider.defaultClient.writeFragment({
+          id: `Category:${category.id}`,
+          fragment: SET_IS_EXPANDED_FRAGMENT,
+          fragmentName: 'SetIsExpandedFragment',
+          data: {
+            isExpanded: false,
+            __typename: 'Category',
+          },
+        });
+      }
     },
     getCategoryName(category) {
       return category[`name_${this.language}`];
@@ -177,6 +154,10 @@ export default {
         fetchPolicy: 'cache-only',
       };
     },
+  },
+  components: {
+    NavBarDesktop,
+    NavBarMobile,
   },
 };
 </script>

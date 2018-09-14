@@ -10,7 +10,7 @@
           </a>
         </h4>
       </div>
-      <div id="collapseProductDetails" v-show="isVisible">
+      <div id="collapseProductDetails" v-if="isVisible">
         <div class="panel-body panel-body-pdp">
           <ul class="product-features-list">
             <li v-for="attr in attributes" :key="attr.attributeDefinition.name">

@@ -126,6 +126,18 @@ export default function ({ authentication, defaultLanguage, setLanguage }) {
             component: () => import('@/components/products/product-detail/ProductDetailPage.vue'),
             props: true,
           },
+          {
+            path: 'search',
+            name: 'ProductListPageSearch',
+            component: () => import('@/components/products/product-list/ProductListPage.vue'),
+            props: route => ({ ...route.params, query: route.query.q }),
+          },
+          {
+            path: ':categorySlug',
+            name: 'ProductListPageCategory',
+            component: () => import('@/components/products/product-list/ProductListPage.vue'),
+            props: route => ({ ...route.params, query: route.query.q }),
+          },
         ],
       },
     ],

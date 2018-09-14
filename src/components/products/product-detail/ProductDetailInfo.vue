@@ -27,7 +27,7 @@
       </div>
       <product-detail-add-to-cart></product-detail-add-to-cart>
       <product-detail-add-to-wishlist></product-detail-add-to-wishlist>
-      <product-detail-reserve-in-store></product-detail-reserve-in-store>
+      <!-- <product-detail-reserve-in-store></product-detail-reserve-in-store> -->
       <div class="row">
         <div class="col-sm-12">
           <div class="panel-group panel-group-pdp" id="accordion-product-info" role="tablist" aria-multiselectable="true">

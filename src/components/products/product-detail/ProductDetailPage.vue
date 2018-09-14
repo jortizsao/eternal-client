@@ -2,11 +2,11 @@
   <div class="product-detail-page">
     <div class="pdp-page">
       <div class="container">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-xs-12 breadcrumb-col">
             <product-detail-breadcrumb :categories="breadcrumbCategories" :product-name="productName"></product-detail-breadcrumb>
           </div>
-        </div>
+        </div> -->
         <div class="row product-info-row-pdp">
           <product-detail-info :product="product"></product-detail-info>
         </div>
