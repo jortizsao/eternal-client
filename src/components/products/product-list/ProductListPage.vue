@@ -158,6 +158,10 @@ export default {
       this.categories.forEach(c => this.createCategoryMap(c));
     },
     fetchMore(infiniteState) {
+      if (!this.products) {
+        return this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
+      }
+
       let filter = [];
 
       if (this.categoryFilter) {
