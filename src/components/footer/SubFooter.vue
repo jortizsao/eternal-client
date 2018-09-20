@@ -3,8 +3,8 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <ul class="footer-title imprint-row">
-            <li class="hidden-xs">{{ $t('legalInfo') }}</li>
+          <ul class="footer-title imprint-row text-center">
+            <li class="hidden-xs">© 2018 Javier Ortiz Saorin <a href="https://www.orsaorin.com" target="_blank">(www.orsaorin.com / javier@orsaorin.com)</a></li>
             <li class="visible-xs">{{ $t('legalInfo') }}</li>
           </ul>
         </div>
@@ -21,7 +21,7 @@ export default {
 </script>
 <i18n>
 en:
-  legalInfo: © 2018 Javier Ortiz Saorin (javier.ortizsaorin@gmail.com)
+  legalInfo: © 2018 Javier Ortiz Saorin (http://www.orsaorin.com / javier@orsaorin.com)
 de:
-  legalInfo: © 2018 Javier Ortiz Saorin (javier.ortizsaorin@gmail.com)
+  legalInfo: © 2018 Javier Ortiz Saorin (http://www.orsaorin.com / javier@orsaorin.com)
 </i18n>

@@ -5,12 +5,14 @@
       <header-component></header-component>
       <Slideout menu="#navigation" panel="#panel" :toggleSelectors="['.navbar-toggle']" :touch="false">
         <navigation-component></navigation-component>
-        <div id="panel" :class="containerClass">
-          <transition :name="transition">
-            <router-view></router-view>
-          </transition>
+        <div id=panel>
+          <div :class="containerClass">
+            <!-- <transition :name="transition"> -->
+              <router-view></router-view>
+            <!-- </transition> -->
+          </div>
+          <footer-component></footer-component>
         </div>
-        <footer-component></footer-component>
         <subfooter-component></subfooter-component>
       </Slideout>
       <vue-progress-bar></vue-progress-bar>

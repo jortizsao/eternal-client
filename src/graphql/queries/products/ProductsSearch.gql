@@ -1,0 +1,20 @@
+#import "../../fragments/products/ProductFragment.gql"
+
+query ProductsSearch(
+  $filter: [String!]
+  $offset: Int = 1
+  $limit: Int = 15
+  $facet: [String!]
+  $locale: Locale!
+) {
+  productsSearch(
+    filter: $filter
+    offset: $offset
+    limit: $limit
+    facet: $facet
+  ) {
+    results {
+      ...ProductFragment
+    }
+  }
+}
