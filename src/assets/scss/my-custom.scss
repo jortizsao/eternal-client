@@ -349,12 +349,12 @@ input:disabled {
 .pdp-product-reserve {
   height: 52px;
   padding: 10px 25px;
-  width: 230px;
+  min-width: 230px;
   margin-left: 13px;
 }
 
 .add-to-bag-btn {
-  width: 230px;
+  min-width: 230px;
 }
 
 .megamenu {

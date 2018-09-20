@@ -117,9 +117,6 @@ export default {
       categoriesMap: {},
     };
   },
-  // created() {
-  //   this.$apollo.queries.products.refetch();
-  // },
   methods: {
     getCategoryId(categorySlug) {
       return this.categoriesMap[categorySlug];
@@ -161,17 +158,16 @@ export default {
       this.categories.forEach(c => this.createCategoryMap(c));
     },
     fetchMore(infiniteState) {
-      // if (this.page * this.perPage < this.products.length) {
-      //   infiniteState.complete();
-      //   return;
-      // }
+      if (!this.products) {
+        return this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
+      }
 
       let filter = [];
 
       if (this.categoryFilter) {
         filter = [...filter, this.categoryFilter];
       }
-      debugger;
+
       this.$apollo.queries.products.fetchMore({
         variables: {
           locale: this.language,
@@ -181,7 +177,6 @@ export default {
           filter,
         },
         updateQuery: (previousResult, { fetchMoreResult }) => {
-          debugger;
           const newProducts = fetchMoreResult.productsSearch.results;
 
           if (!newProducts.length) {
@@ -202,17 +197,6 @@ export default {
       });
     },
     reset() {
-      // this.products = null;
-      // this.categories = null;
-      // if (this.categoryFilter) {
-      //   this.$apollo.queries.products.refetch({
-      //     locale: this.language,
-      //     offset: 1,
-      //     limit: this.perPage,
-      //     filter: this.categoryFilter,
-      //   });
-      // }
-      // this.page = 1;
       if (this.$refs.infiniteLoading) {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
       }
