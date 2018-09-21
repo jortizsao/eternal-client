@@ -126,7 +126,7 @@ export default {
               this.$Progress.finish();
               this.reset();
               this.$validator.reset();
-              this.$router.push({ name: 'MyAccount', params: { id: this.user.id } });
+              this.$router.push({ name: 'MyAccountPersonalDetails', params: { id: this.user.id } });
             })
             .catch(err => {
               const text = err.response.status === 400 ? err.response.data.message : undefined;
