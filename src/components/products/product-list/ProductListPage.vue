@@ -94,6 +94,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import { mapState } from 'vuex';
 import InfiniteLoading from 'vue-infinite-loading';
 import gql from 'graphql-tag';
@@ -180,11 +181,15 @@ export default {
           const newProducts = fetchMoreResult.productsSearch.results;
 
           if (!newProducts.length) {
-            infiniteState.complete();
+            Vue.nextTick(() => {
+              infiniteState.complete();
+            });
             return previousResult.productsSearch;
           }
 
-          infiniteState.loaded();
+          Vue.nextTick(() => {
+            infiniteState.loaded();
+          });
 
           return {
             productsSearch: {
