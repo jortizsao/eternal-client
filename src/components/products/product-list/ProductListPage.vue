@@ -28,7 +28,12 @@
             {{> catalog/pop/filters-sidebar-mobile}}
           </div> -->
           <!-- End mobile version -->
-
+          <div class="jumbotron-row" v-if="category">
+            <div class="jumbotron">
+              <p v-if="category.parent">{{category.parent.name}}</p>
+              <h2>{{category.name.toUpperCase()}}</h2>
+            </div>
+          </div>
 
           <div id="pop-product-list">
             <div v-for="product in products" :key="product.id" class="col-xs-6 col-md-3">
@@ -85,27 +90,16 @@ export default {
     };
   },
   methods: {
-    getCategoryId(categorySlug) {
+    getCategory(categorySlug) {
       return this.categoriesMap[categorySlug];
     },
     createCategoryMap(category) {
-      const existingCategory = this.categoriesMap[category.slug];
-
-      if (existingCategory) {
-        return existingCategory.allChildren;
-      }
-
       if (category.children && category.children.length) {
         const allChildrenCategories = category.children.reduce((allChildren, child) => {
-          const existingChild = this.categoriesMap[child.slug];
-
-          if (existingChild) {
-            return [...allChildren, ...existingChild.allChildren];
-          }
           const allChildCategories = this.createCategoryMap(child);
           this.categoriesMap = {
             ...this.categoriesMap,
-            [child.slug]: child.id,
+            [child.slug]: child,
           };
           return [...allChildren, ...allChildCategories];
         }, []);
@@ -113,7 +107,7 @@ export default {
         const allCategories = [...category.children, ...allChildrenCategories];
         this.categoriesMap = {
           ...this.categoriesMap,
-          [category.slug]: category.id,
+          [category.slug]: category,
         };
 
         return allCategories;
@@ -184,8 +178,8 @@ export default {
       if (this.categoryId) {
         return `categories.id:subtree("${this.categoryId}")`;
       } else if (this.categorySlug) {
-        if (this.getCategoryId(this.categorySlug)) {
-          return `categories.id:subtree("${this.getCategoryId(this.categorySlug)}")`;
+        if (this.category) {
+          return `categories.id:subtree("${this.category.id}")`;
         }
         return '';
       } else {
@@ -194,6 +188,15 @@ export default {
     },
     currentPage() {
       return this.products ? Math.ceil(this.products.length / this.perPage) : 0;
+    },
+    category() {
+      if (this.categoryId) {
+        return Object.values(this.categoriesMap).find(category => category.id === this.categoryId);
+      } else if (this.categorySlug) {
+        return this.categoriesMap[this.categorySlug];
+      } else {
+        return null;
+      }
     },
     ...mapState('general', ['language']),
   },
@@ -248,6 +251,11 @@ export default {
           fragment CategoryFragment on Category {
             id
             slug(locale: $locale)
+            name(locale: $locale)
+            parent {
+              id
+              name(locale: $locale)
+            }
           }
         `,
         variables() {
