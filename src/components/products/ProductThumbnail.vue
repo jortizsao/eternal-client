@@ -14,7 +14,7 @@
           </button>
         </form> -->
         <div class="pop-product-image">
-          <img class="img-lazy" :src="mainImage" :alt="productName" />
+          <v-lazy-image :src="mainImage" :alt="productName" />
         </div>
         <div class="pop-product-name">
           <span class="name-headline">{{productName}}</span>
@@ -53,6 +53,8 @@
   </div>
 </template>
 <script>
+import VLazyImage from 'v-lazy-image';
+
 export default {
   props: {
     product: {
@@ -103,9 +105,19 @@ export default {
       // return false;
     },
   },
+  components: {
+    VLazyImage,
+  },
 };
 </script>
 <style lang="scss" scoped>
+.v-lazy-image {
+  opacity: 0;
+  transition: all 0.7s;
+}
+.v-lazy-image-loaded {
+  opacity: 1;
+}
 </style>
 <i18n>
 en:

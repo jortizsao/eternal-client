@@ -338,7 +338,19 @@ input:disabled {
   max-height: 500px;
 
   .pop-product-image {
-    height: inherit;
+    position: relative;
+    overflow: hidden;
+    height: 25vh;
+
+    @media screen and (min-width: 768px) {
+      height: 35vh;
+    }
+
+    > img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
   }
 }
 
@@ -381,4 +393,10 @@ input:disabled {
     height: 300px;
     bottom: 55px;
   }
+}
+
+#pop-product-list {
+  width: 100%;
+  float: none;
+  padding: 30px 0px;
 }
