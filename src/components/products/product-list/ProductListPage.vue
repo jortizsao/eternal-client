@@ -38,20 +38,19 @@
             <!-- {{> catalog/product-list products=content.products}} -->
             <infinite-loading ref="infiniteLoading" @infinite="fetchMore">
               <span slot="spinner">
-                <div class="row" v-show="products">
+                <!-- <div class="row" v-show="products">
                   <div class="col-sm-12 text-center">
                     <loader></loader>
                   </div>
-                </div>
+                </div> -->
               </span>
               <span slot="no-more"></span>
               <span slot="no-results"></span>
             </infinite-loading>
-          </div>
-          
-          <div class="row" v-show="!products && isProductSearchLoading">
-            <div class="col-sm-12 text-center">
-              <loader></loader>
+            <div class="row" v-show="isProductSearchLoading">
+              <div class="col-sm-12 text-center">
+                <loader></loader>
+              </div>
             </div>
           </div>
         </div>
