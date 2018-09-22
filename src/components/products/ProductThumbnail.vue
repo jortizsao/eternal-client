@@ -55,6 +55,8 @@
   </div>
 </template>
 <script>
+import VLazyImage from 'v-lazy-image';
+
 export default {
   props: {
     product: {
@@ -106,6 +108,9 @@ export default {
 
       // return false;
     },
+  },
+  components: {
+    VLazyImage,
   },
 };
 </script>
