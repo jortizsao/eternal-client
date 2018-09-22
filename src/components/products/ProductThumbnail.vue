@@ -14,7 +14,9 @@
           </button>
         </form> -->
         <div class="pop-product-image">
-          <v-lazy-image :src="mainImage" :alt="productName" />
+          <transition name="fade">
+            <img :src="mainImage" v-show="isImgLoaded" alt="productName" @load="isImgLoaded = true">
+          </transition>
         </div>
         <div class="pop-product-name">
           <span class="name-headline">{{productName}}</span>
@@ -67,7 +69,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      isImgLoaded: false,
+    };
   },
   computed: {
     mainImage() {
@@ -111,12 +115,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.v-lazy-image {
-  opacity: 0;
-  transition: all 0.7s;
+.fade-enter-active {
+  transition: opacity 0.5s;
 }
-.v-lazy-image-loaded {
-  opacity: 1;
+.fade-enter {
+  opacity: 0;
 }
 </style>
 <i18n>
