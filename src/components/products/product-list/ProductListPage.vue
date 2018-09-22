@@ -162,6 +162,9 @@ export default {
       });
     },
     reset() {
+      this.$apollo.queries.products.stop();
+      this.products = null;
+      this.$apollo.queries.products.start();
       if (this.$refs.infiniteLoading) {
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:reset');
       }
