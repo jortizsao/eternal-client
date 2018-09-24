@@ -340,10 +340,10 @@ input:disabled {
   .pop-product-image {
     position: relative;
     overflow: hidden;
-    height: 25vh;
+    height: 200px;
 
     @media screen and (min-width: 768px) {
-      height: 35vh;
+      height: 300px;
     }
 
     > img {
