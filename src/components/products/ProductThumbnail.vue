@@ -17,6 +17,7 @@
           <transition name="fade">
             <img :src="mainImage" v-show="isImgLoaded" alt="productName" @load="isImgLoaded = true">
           </transition>
+          <img :src="imgLoader" v-show="!isImgLoaded" class="imgLoader">
         </div>
         <div class="pop-product-name">
           <span class="name-headline">{{productName}}</span>
@@ -55,6 +56,8 @@
   </div>
 </template>
 <script>
+import imageLoader from '@/assets/img/img-loader.svg';
+
 export default {
   props: {
     product: {
@@ -106,6 +109,9 @@ export default {
 
       // return false;
     },
+    imgLoader() {
+      return imageLoader;
+    },
   },
 };
 </script>
@@ -115,6 +121,13 @@ export default {
 }
 .fade-enter {
   opacity: 0;
+}
+.shop-item .pop-product-image .imgLoader {
+  padding: 50px 0px;
+
+  @media screen and (min-width: 768px) {
+    padding: 100px 0px;
+  }
 }
 </style>
 <i18n>
